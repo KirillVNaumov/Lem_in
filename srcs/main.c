@@ -12,7 +12,16 @@
 
 # include "lem_in.h"
 
+void	error(char *reason)
+{
+	ft_printf("Error: %s\n", reason);
+	exit(0);
+}
+
 int		main(void)
 {
-	ft_printf("Working!");
+	t_map	map;
+
+	ft_bzero(&map, sizeof(t_map));
+	reading_input(&map);
 }

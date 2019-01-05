@@ -12,7 +12,7 @@
 
 INCLUDES = -Iincludes -Ilibft
 
-SRCS = srcs/check.c
+SRCS = srcs/main.c srcs/reading_input.c srcs/check_if_number.c
 
 LIBFT = -L ./libft -lft
 
@@ -35,17 +35,17 @@ BLUE_EXTRA = \033[1;36m
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
-	# @make -C libft
+	@make -C libft
 	@echo "$(GREEN)Compiling executable $(GREEN_EXTRA)$(EXEC)$(RESET)"
 	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT)
 	@echo "$(BLUE_EXTRA)$(EXEC)$(BLUE): Complete$(RESET)"
 
 clean:
-	@if [ -a "$(OBJ)" ]; then \
+	@if [ -a "srcs/main.o" ]; then \
 	echo "$(RED)Deleting objects for $(RED_EXTRA)$(EXEC)$(RESET)"; \
 	/bin/rm -rf $(OBJ); \
 	fi
-	# @make -C libft clean
+	@make -C libft clean
 	@echo "$(BLUE_EXTRA)clean$(BLUE): Complete$(RESET)"
 
 fclean: clean
@@ -54,7 +54,7 @@ fclean: clean
 	/bin/rm -f $(EXEC); \
 	fi
 
-	# @make -C libft fclean
+	@make -C libft fclean
 	@echo "$(BLUE_EXTRA)fclean$(BLUE): Complete$(RESET)"
 
 re: fclean all
