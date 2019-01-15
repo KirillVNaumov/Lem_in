@@ -12,7 +12,8 @@
 
 INCLUDES = -Iincludes -Ilibft
 
-SRCS = srcs/main.c srcs/reading_input.c srcs/check_if_number.c
+SRCS = srcs/main.c srcs/reading_input.c srcs/check_if_number.c srcs/struct_operations.c \
+		
 
 LIBFT = -L ./libft -lft
 
