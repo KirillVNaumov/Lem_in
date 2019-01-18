@@ -12,7 +12,8 @@
 
 INCLUDES = -Iincludes -Ilibft
 
-SRCS = srcs/main.c srcs/reading_input.c srcs/check_if_number.c srcs/struct_operations.c \
+SRCS = 	srcs/main.c srcs/reading_input.c srcs/check_if_number.c \
+	   	srcs/checks.c srcs/struct_operations.c srcs/utils.c
 		
 
 LIBFT = -L ./libft -lft
@@ -31,14 +32,14 @@ BLUE_EXTRA = \033[1;36m
 
 %.o:%.c
 			@echo "$(GREEN) - Creating $(GREEN_EXTRA)$<...$(RESET)"
-			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES)
+			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES) -g
 
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
 	@make -C libft
 	@echo "$(GREEN)Compiling executable $(GREEN_EXTRA)$(EXEC)$(RESET)"
-	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT)
+	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT) -g
 	@echo "$(BLUE_EXTRA)$(EXEC)$(BLUE): Complete$(RESET)"
 
 clean:

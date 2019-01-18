@@ -15,6 +15,8 @@
 
 # include "../libft/libft.h"
 
+# define CRED  "\x1B[31m"
+
 typedef struct      s_links
 {
     char            *name;
@@ -38,15 +40,16 @@ typedef struct      s_map
     struct s_rooms  *rooms;
 }                   t_map;
 
-void                error(char *reason);
+void	            error(char *reason);
 void                reading_input(t_map *map);
 int		            check_for_number(char *str);
 int		            check_for_integer(char *str);
 t_rooms             *add_room(t_rooms *rooms, char *name, int x, int y);
 t_links             *add_link(t_links *links, char *name);
-int                 check_if_link(t_map *map, char *line);
 int                 check_if_room(char *line);
-int                 check_link_exictence(t_map *map, char *room, char *link);
+int                 check_link_existence(t_map *map, char *room, char *link);
 int                 check_room_existence(t_map *map, char *room);
+int                 check_coordinates(t_map *map, int x, int y);
+char                *add_char(char *str, char c);
 
 #endif

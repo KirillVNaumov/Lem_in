@@ -1,33 +1,17 @@
 # include "lem_in.h"
 
-int         check_if_room(char *line)
+int         check_coordinates(t_map *map, int x, int y)
 {
-    int     i;
+    t_rooms     *tmp;
 
-    if (line[0] == 'L')
-        return (-1);
-    i = 0;
-    while (line[i] && line[i] > ' ')
-        ++i;
-    if (line[i] != ' ' || line[0] <= ' ')
-        return (-1);
-    ++i;
-    while (line[i] && line[i] >= '0' && line[i] <= '9')
-        ++i;
-    if (line[i] != ' ')
-        return (-1);
-    ++i;
-    while (line[i] && line[i] >= '0' && line[i] <= '9')
-        ++i;
-    if (line[i] != '\0')
-        return (-1);
-    return (1);
-}
-
-int         check_if_link(t_map *map, char *line)
-{
-    
-    return (0);
+    tmp = map->rooms;
+    while (tmp)
+    {
+        if (tmp->x == x && tmp->y == y)
+            return (1);
+        tmp = tmp->next;
+    }
+    return (-1); 
 }
 
 int         check_room_existence(t_map *map, char *room)
@@ -44,7 +28,7 @@ int         check_room_existence(t_map *map, char *room)
     return (-1);
 }
 
-int         check_link_exictence(t_map *map, char *room, char *link)
+int         check_link_existence(t_map *map, char *room, char *link)
 {
     t_rooms     *tmp;
 
@@ -64,4 +48,34 @@ int         check_link_exictence(t_map *map, char *room, char *link)
         tmp = tmp->next;
     }
     return (-1);
+}
+
+int         check_if_room(char *line)
+{
+    int     i;
+
+    if (line[0] == 'L')
+        return (-1);
+    i = 0;
+    while (line[i] && line[i] > ' ')
+        ++i;
+    if (line[i] != ' ' || line[0] <= ' ')
+        return (-1);
+    ++i;
+    if (line[i] && line[i] >= '0' && line[i] <= '9')
+        while (line[i] && line[i] >= '0' && line[i] <= '9')
+            ++i;
+    else
+        return (-1);
+    if (line[i] != ' ')
+        return (-1);
+    ++i;
+    if (line[i] && line[i] >= '0' && line[i] <= '9')
+        while (line[i] && line[i] >= '0' && line[i] <= '9')
+            ++i;
+    else
+        return (-1);
+    if (line[i] != '\0')
+        return (-1);
+    return (1);
 }
