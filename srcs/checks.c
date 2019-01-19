@@ -17,7 +17,6 @@ int         check_coordinates(t_map *map, int x, int y)
 int         check_room_existence(t_map *map, char *room)
 {
     t_rooms     *tmp;
-
     tmp = map->rooms;
     while (tmp)
     {
@@ -30,22 +29,24 @@ int         check_room_existence(t_map *map, char *room)
 
 int         check_link_existence(t_map *map, char *room, char *link)
 {
-    t_rooms     *tmp;
+    t_rooms     *tmp_rooms;
+    t_links     *tmp_links;
 
-    tmp = map->rooms;
-    while (tmp)
+    tmp_rooms = map->rooms;
+    while (tmp_rooms)
     {
-        if (!ft_strcmp(tmp->name, room))
+        if (!ft_strcmp(tmp_rooms->name, room))
         {
-            while (tmp->links)
+            tmp_links = tmp_rooms->links;
+            while (tmp_links)
             {
-                if (!ft_strcmp(tmp->links->name, link))
+                if (!ft_strcmp(tmp_links->name, link))
                     return (1);
-                tmp->links = tmp->links->next;
+                tmp_links = tmp_links->next;
             }
             return (-1);
         }
-        tmp = tmp->next;
+        tmp_rooms = tmp_rooms->next;
     }
     return (-1);
 }

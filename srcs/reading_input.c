@@ -125,7 +125,7 @@ void        reading_input(t_map *map)
     start_end = 0;
     while (get_next_line(0, &line))
     {
-        if (!ft_strcmp(line, "finish"))
+        if (!ft_strcmp(line, "finish") || !ft_strcmp(line, ""))
             break ;
         if (check_for_hashtag(line, &start_end, phase) == 1)
             continue ;

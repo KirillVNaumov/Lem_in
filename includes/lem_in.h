@@ -51,5 +51,6 @@ int                 check_link_existence(t_map *map, char *room, char *link);
 int                 check_room_existence(t_map *map, char *room);
 int                 check_coordinates(t_map *map, int x, int y);
 char                *add_char(char *str, char c);
+int                 find_connection(t_map *map);
 
 #endif

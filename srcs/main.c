@@ -24,4 +24,6 @@ int		main(void)
 
 	ft_bzero(&map, sizeof(t_map));
 	reading_input(&map);
+	if (find_connection(&map) == -1)
+		error("There is no connection between start and end points");
 }
