@@ -1,4 +1,4 @@
-# include "lem_in.h" 
+#include "lem_in.h"
 
 t_rooms     *add_room(t_rooms *rooms, char *name, int x, int y)
 {
@@ -13,6 +13,7 @@ t_rooms     *add_room(t_rooms *rooms, char *name, int x, int y)
         rooms->name = ft_strdup(name);
         rooms->next = NULL;
         rooms->links = NULL;
+        rooms->index = 0;
         return (rooms);
     }
     begin = rooms;
@@ -25,27 +26,6 @@ t_rooms     *add_room(t_rooms *rooms, char *name, int x, int y)
     while (rooms->next)
         rooms = rooms->next;
     rooms->next = new;
-    return (begin);
-}
-
-t_links     *add_link(t_links *links, char *name)
-{
-    t_links     *new;
-    t_links     *begin;
-
-    if (!links)
-    {
-        links = (t_links *)malloc(sizeof(t_links));
-        links->name = ft_strdup(name);
-        links->next = NULL;
-        return (links);
-    }
-    begin = links;
-    new = (t_links *)malloc(sizeof(t_links));
-    new->name = ft_strdup(name);
-    new->next = NULL;
-    while (links->next)
-        links = links->next;
-    links->next = new;
+    new->index = rooms->index + 1;
     return (begin);
 }

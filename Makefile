@@ -12,9 +12,22 @@
 
 INCLUDES = -Iincludes -Ilibft
 
-SRCS = 	srcs/main.c srcs/reading_input.c srcs/check_if_number.c \
-	   	srcs/checks.c srcs/struct_operations.c srcs/utils.c srcs/find_connection.c
-		
+SRCS = 	srcs/main.c \
+		srcs/backtracking/find_all_connections_between_start_and_end.c \
+		srcs/backtracking/algorithm.c \
+		srcs/creating_graph/if_connected.c \
+		srcs/creating_graph/creating_graph.c \
+		srcs/reading_input/reading_input.c \
+		srcs/reading_input/check_if_number.c \
+	   	srcs/reading_input/checks.c \
+		srcs/utils/find_index.c \
+		srcs/utils/add_char.c \
+		srcs/utils/printing_checks.c \
+		srcs/utils/struct_operations/t_rooms.c \
+		srcs/utils/struct_operations/t_links.c \
+		srcs/utils/struct_operations/t_list.c \
+		srcs/utils/struct_operations/t_ant.c \
+		srcs/utils/struct_operations/t_path.c 
 
 LIBFT = -L ./libft -lft
 

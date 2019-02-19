@@ -21,9 +21,13 @@ void	error(char *reason)
 int		main(void)
 {
 	t_map	map;
+	t_path	path;	
 
 	ft_bzero(&map, sizeof(t_map));
 	reading_input(&map);
-	if (find_connection(&map) == -1)
-		error("There is no connection between start and end points");
+	map.start_index = find_index(&map, map.start);
+	map.end_index = find_index(&map, map.end);
+	creating_graph(&map);
+	find_all_connections_between_start_and_end(&map, &path);
+	create_ant_farm(&map);
 }

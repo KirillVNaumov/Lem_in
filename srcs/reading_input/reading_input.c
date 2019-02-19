@@ -62,9 +62,9 @@ void        adding_link_process(t_map *map, char *str1, char *str2)
     while (rooms)
     {
         if (!ft_strcmp(rooms->name, str1))
-            rooms->links = add_link(rooms->links, str2);
+            rooms->links = add_link(rooms->links, str2, find_index(map, str2));
         if (!ft_strcmp(rooms->name, str2))
-            rooms->links = add_link(rooms->links, str1);
+            rooms->links = add_link(rooms->links, str1, find_index(map, str1));
         rooms = rooms->next;
     }
 }
