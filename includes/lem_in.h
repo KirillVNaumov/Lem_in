@@ -119,5 +119,6 @@ void                algorithm(int *index, int **graph, t_path **path, t_list *li
 void                find_solution(t_map *map, t_path **path);
 void                move_ants(t_map *map);
 void                assign_paths(t_map *map, t_path *path);
+t_list              *match_to_others(t_list *path, t_map *map, int i);
 
 #endif

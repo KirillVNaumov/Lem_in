@@ -4,14 +4,18 @@ t_list      *find_best_path(t_path *path, t_map *map, int i)
 {
     int     best_tempi;
     t_path  *best_choice;
+    t_list  *tmp;
+    t_list  *final_list;
 
     best_tempi = 2147483647;
     best_choice = NULL;
     while (path)
     {
-        if (best_tempi > path->length + path->waitlist)
+        tmp = match_to_others(path->path, map, i);
+        if (best_tempi > size_list(tmp) + path->waitlist)
         {
-            best_tempi = path->length + path->waitlist;
+            best_tempi = size_list(tmp) + path->waitlist;
+            final_list = copy_list(tmp);
             best_choice = path;
         }
         path = path->next;
@@ -19,7 +23,7 @@ t_list      *find_best_path(t_path *path, t_map *map, int i)
     map->ant_farm[i]->waitlist = best_choice->waitlist;
     if (best_choice->length != 2)
         ++best_choice->waitlist;
-    return (copy_list(best_choice->path));
+    return (final_list);
 }
 
 void        assign_paths(t_map *map, t_path *path)
