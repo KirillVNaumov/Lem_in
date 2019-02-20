@@ -21,8 +21,9 @@ void	error(char *reason)
 int		main(void)
 {
 	t_map	map;
-	t_path	path;	
+	t_path	*path;	
 
+	path = NULL;
 	ft_bzero(&map, sizeof(t_map));
 	reading_input(&map);
 	map.start_index = find_index(&map, map.start);
@@ -30,5 +31,5 @@ int		main(void)
 	creating_graph(&map);
 	find_all_connections_between_start_and_end(&map, &path);
 	create_ant_farm(&map);
-	// find_solution(&map, &path);
+	find_solution(&map, &path);
 }

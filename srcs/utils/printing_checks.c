@@ -79,11 +79,14 @@ void         print_list(t_list *list)
 
 void         print_path(t_path *path)
 {
+    t_list  *tmp;
+
     ft_printf("PRINT_PATH\n");
     ft_printf("---------------------------------\n");
     while (path)
     {
-        print_list(path->path);
+        tmp = path->path;
+        print_list(tmp);
         path = path->next;
     }
     ft_printf("---------------------------------\n");
@@ -106,6 +109,7 @@ void        print_ant_farm(t_map *map)
         }
         else
             ft_printf("PATH = \nNULL\n");
+        ft_printf("WAITLIST = %d\n", map->ant_farm[i]->waitlist);
         ft_printf("CURRENT_ROOM = %d\n***\n\n", map->ant_farm[i]->room_index);
         ++i;
     }

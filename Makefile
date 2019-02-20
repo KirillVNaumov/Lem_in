@@ -23,6 +23,7 @@ SRCS = 	srcs/main.c \
 		srcs/solution/finding_solution.c \
 		srcs/solution/assign_paths.c \
 		srcs/solution/move_ants.c \
+		srcs/utils/return_name_from_index.c \
 		srcs/utils/find_index.c \
 		srcs/utils/add_char.c \
 		srcs/utils/printing_checks.c \

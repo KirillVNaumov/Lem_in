@@ -11,6 +11,7 @@ void        create_ant_farm(t_map *map)
         map->ant_farm[i] = (t_ant *)malloc(sizeof(t_ant ));
         map->ant_farm[i]->path = NULL;
         map->ant_farm[i]->waitlist = 0;
+        map->ant_farm[i]->rooms_passed = 0;
         map->ant_farm[i]->room_index = map->start_index;
         ++i;
     }

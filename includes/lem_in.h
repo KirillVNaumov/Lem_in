@@ -23,6 +23,7 @@ typedef struct      s_ant
     struct s_list   *path;
     int             room_index;
     int             waitlist;
+    int             rooms_passed;
 }                   t_ant;
 
 typedef struct      s_list
@@ -102,6 +103,7 @@ void                print_list(t_list *list);
 void                print_ant_farm(t_map *map);
 char                *add_char(char *str, char c);
 int                 find_index(t_map *map, char *name);
+char                *return_name_from_index(t_map *map, int index);
 
 //  CREATING_GRAPH
 int                 find_connection(t_map *map);
@@ -110,11 +112,11 @@ int                 number_of_vertices(t_map *map);
 int                 if_connected(t_map *map, int index1, int index2);
 
 //  BACKTRACKING
-void                find_all_connections_between_start_and_end(t_map *map, t_path *path);
+void                find_all_connections_between_start_and_end(t_map *map, t_path **path);
 void                algorithm(int *index, int **graph, t_path **path, t_list *list);
 
 //  SOLUTION
-void                find_solution(t_map *map, t_path *path);
+void                find_solution(t_map *map, t_path **path);
 void                move_ants(t_map *map);
 void                assign_paths(t_map *map, t_path *path);
 
