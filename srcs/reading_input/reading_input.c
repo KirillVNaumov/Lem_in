@@ -6,6 +6,8 @@ int        read_number_of_ants(t_map *map, char *line)
         map->number_of_ants = ft_atoi(line);
     else
         error("No input for number of ants");
+	if (map->number_of_ants <= 0)
+		error("Invalid number of ants");
     return (1);
 }
 

@@ -22,6 +22,7 @@ typedef struct      s_ant
 {
     struct s_list   *path;
     int             room_index;
+    int             waitlist;
 }                   t_ant;
 
 typedef struct      s_list
@@ -34,6 +35,7 @@ typedef struct      s_path
 {
     struct s_list   *path;
     int             length;
+    int             waitlist;
     struct s_path   *next;
 }                   t_path;
 
@@ -92,11 +94,12 @@ t_rooms             *add_room(t_rooms *rooms, char *name, int x, int y);
 
 //  UTILS
 
-int                 print_connections(t_map *map);
-int                 print_graph_from_map(t_map *map);
-int                 print_graph(int **graph, int size);
-int                 print_path(t_path *path);
-int                 print_list(t_list *list);
+void                print_connections(t_map *map);
+void                print_graph_from_map(t_map *map);
+void                print_graph(int **graph, int size);
+void                print_path(t_path *path);
+void                print_list(t_list *list);
+void                print_ant_farm(t_map *map);
 char                *add_char(char *str, char c);
 int                 find_index(t_map *map, char *name);
 
@@ -109,5 +112,10 @@ int                 if_connected(t_map *map, int index1, int index2);
 //  BACKTRACKING
 void                find_all_connections_between_start_and_end(t_map *map, t_path *path);
 void                algorithm(int *index, int **graph, t_path **path, t_list *list);
+
+//  SOLUTION
+void                find_solution(t_map *map, t_path *path);
+void                move_ants(t_map *map);
+void                assign_paths(t_map *map, t_path *path);
 
 #endif

@@ -30,4 +30,5 @@ int		main(void)
 	creating_graph(&map);
 	find_all_connections_between_start_and_end(&map, &path);
 	create_ant_farm(&map);
+	// find_solution(&map, &path);
 }

@@ -10,6 +10,7 @@ t_path      *add_path(t_path *path, t_list *list)
         path = (t_path *)malloc(sizeof(t_path));
         path->path = copy_list(list);
         path->length = size_list(list);
+        path->waitlist = 0;
         path->next = NULL;
         return (path);
     }
@@ -17,6 +18,7 @@ t_path      *add_path(t_path *path, t_list *list)
     new = (t_path *)malloc(sizeof(t_path));
     new->path = copy_list(list);
     new->length = size_list(list);
+    new->waitlist = 0;
     new->next = NULL;
     while (path->next)
         path = path->next;

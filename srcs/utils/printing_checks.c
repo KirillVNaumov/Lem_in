@@ -1,6 +1,6 @@
 # include "lem_in.h"
 
-int         print_connections(t_map *map)
+void         print_connections(t_map *map)
 {
     ft_printf("PRINT_CONNECTIONS\n");
     ft_printf("---------------------------------\n");
@@ -16,10 +16,9 @@ int         print_connections(t_map *map)
         map->rooms = map->rooms->next;
     }
     ft_printf("---------------------------------\n");
-    return (1);
 }
 
-int         print_graph_from_map(t_map *map)
+void         print_graph_from_map(t_map *map)
 {
     int     length = number_of_vertices(map);
     t_rooms *tmp_rooms;
@@ -31,10 +30,9 @@ int         print_graph_from_map(t_map *map)
         tmp_rooms = tmp_rooms->next;
     }
     print_graph(map->graph, length);
-    return (1);
 }
 
-int         print_graph(int **graph, int size)
+void         print_graph(int **graph, int size)
 {
     int     i = 0;
     int     j = 0;
@@ -62,10 +60,9 @@ int         print_graph(int **graph, int size)
         ++i;
     }
     ft_printf("---------------------------------\n");
-    return (1);
 }
 
-int         print_list(t_list *list)
+void         print_list(t_list *list)
 {
     ft_printf("PRINT_LIST\n\n");
     // ft_printf("---------------------------------\n");
@@ -78,10 +75,9 @@ int         print_list(t_list *list)
     }
     ft_printf("\n\n");
     // ft_printf("---------------------------------\n");
-    return (1);
 }
 
-int         print_path(t_path *path)
+void         print_path(t_path *path)
 {
     ft_printf("PRINT_PATH\n");
     ft_printf("---------------------------------\n");
@@ -91,5 +87,27 @@ int         print_path(t_path *path)
         path = path->next;
     }
     ft_printf("---------------------------------\n");
-    return (1);
+}
+
+void        print_ant_farm(t_map *map)
+{
+    int     i;
+
+    i = 0;
+    ft_printf("PRINT_ANT_FARM\n");
+    ft_printf("---------------------------------\n");
+    while (map->ant_farm[i])
+    {
+        ft_printf("ANT %d:\n***\n", i + 1);
+        if (map->ant_farm[i]->path)
+        {
+            ft_printf("PATH = ");
+            print_list(map->ant_farm[i]->path);
+        }
+        else
+            ft_printf("PATH = \nNULL\n");
+        ft_printf("CURRENT_ROOM = %d\n***\n\n", map->ant_farm[i]->room_index);
+        ++i;
+    }
+    ft_printf("---------------------------------\n");
 }

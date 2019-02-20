@@ -20,6 +20,9 @@ SRCS = 	srcs/main.c \
 		srcs/reading_input/reading_input.c \
 		srcs/reading_input/check_if_number.c \
 	   	srcs/reading_input/checks.c \
+		srcs/solution/finding_solution.c \
+		srcs/solution/assign_paths.c \
+		srcs/solution/move_ants.c \
 		srcs/utils/find_index.c \
 		srcs/utils/add_char.c \
 		srcs/utils/printing_checks.c \
