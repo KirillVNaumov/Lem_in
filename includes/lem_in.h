@@ -86,6 +86,7 @@ int                 check_coordinates(t_map *map, int x, int y);
 void                create_ant_farm(t_map *map);
 t_links             *add_link(t_links *links, char *name, int index);
 t_list              *add_list(t_list *list, int index);
+t_list              *add_next_list(t_list *list, int index, t_list *tail);
 t_list              *delete_list(t_list *list);
 t_list              *copy_list(t_list *list);
 int                 size_list(t_list *list);
@@ -119,6 +120,6 @@ void                algorithm(int *index, int **graph, t_path **path, t_list *li
 void                find_solution(t_map *map, t_path **path);
 void                move_ants(t_map *map);
 void                assign_paths(t_map *map, t_path *path);
-t_list              *match_to_others(t_list *path, t_map *map, int i);
+t_list              *match_to_others(t_list *path, t_map *map, int i, int waitlist);
 
 #endif

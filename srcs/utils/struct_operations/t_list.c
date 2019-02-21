@@ -1,5 +1,18 @@
 #include "lem_in.h"
 
+t_list      *add_next_list(t_list *list, int index, t_list *tail)
+{
+    t_list     *new;
+    t_list     *begin;
+
+    begin = list;
+    new = (t_list *)malloc(sizeof(t_list));
+    new->index = index;
+    new->next = tail;
+    list->next = new;
+    return (begin);
+}
+
 t_list      *add_list(t_list *list, int index)
 {
     t_list     *new;

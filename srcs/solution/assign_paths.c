@@ -11,7 +11,7 @@ t_list      *find_best_path(t_path *path, t_map *map, int i)
     best_choice = NULL;
     while (path)
     {
-        tmp = match_to_others(path->path, map, i);
+        tmp = match_to_others(path->path, map, i, path->waitlist);
         if (best_tempi > size_list(tmp) + path->waitlist)
         {
             best_tempi = size_list(tmp) + path->waitlist;
