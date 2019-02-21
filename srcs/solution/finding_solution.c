@@ -19,7 +19,7 @@ void        find_solution(t_map *map, t_path **path)
     int     number_of_moves;
 
     assign_paths(map, *path);
-    print_ant_farm(map);
+    // print_ant_farm(map);
     number_of_moves = 0;
     while (if_solved(map))
     {
