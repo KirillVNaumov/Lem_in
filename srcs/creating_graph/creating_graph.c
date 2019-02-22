@@ -54,5 +54,4 @@ void        creating_graph(t_map *map)
         }
         ++i;
     }
-    print_graph_from_map(map);
 }

@@ -11,19 +11,15 @@ t_list      *find_best_path(t_path *path, t_map *map, int i)
     best_choice = NULL;
     while (path)
     {
-        // if (i == 13)
-            // ft_printf("Solving before 'match_to_others'...\n");
-        tmp = match_to_others(copy_list(path->path), map, i, path->waitlist);
-        // if (tmp->index != -1)
-            if (best_tempi > size_list(tmp) + path->waitlist)
-            {
-                best_tempi = size_list(tmp) + path->waitlist;
-                final_list = copy_list(tmp);
-                best_choice = path;
-            }
+        tmp = match_to_others(copy_list(path->path), map, i);
+        if (best_tempi > size_list(tmp) + path->waitlist)
+        {
+            best_tempi = size_list(tmp) + path->waitlist;
+            final_list = copy_list(tmp);
+            best_choice = path;
+        }
         path = path->next;
     }
-    // map->ant_farm[i]->waitlist = best_choice->waitlist;
     if (best_choice->length != 2)
         ++best_choice->waitlist;
     return (final_list);
@@ -36,9 +32,7 @@ void        assign_paths(t_map *map, t_path *path)
     i = 0;
     while (map->ant_farm[i])
     {
-        // ft_printf("ANT %d...\n", i + 1);
         map->ant_farm[i]->path = find_best_path(path, map, i);
-        // ft_printf("     ...Completed\n", i + 1);
         ++i;
     }
 }
