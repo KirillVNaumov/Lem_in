@@ -40,8 +40,6 @@ void	analyze_flags(char **argv, t_map *map, t_path *path)
 			print_ant_farm(map);
 		else if (!ft_strcmp(argv[i], "--connections"))
 			print_connections(map);
-		else if (!ft_strcmp(argv[i], "--help"))
-			print_usage();
 		++i;
 	}
 }
@@ -53,6 +51,11 @@ int		main(int argc, char **argv)
 
 	path = NULL;
 	argc = 0;
+	if (argv[1] && !ft_strcmp(argv[1], "--help"))
+	{
+		print_usage();
+		return (0);
+	}
 	ft_bzero(&map, sizeof(t_map));
 	reading_input(&map);
 	map.start_index = find_index(&map, map.start);
@@ -60,6 +63,5 @@ int		main(int argc, char **argv)
 	creating_graph(&map);
 	find_all_connections_between_start_and_end(&map, &path);
 	create_ant_farm(&map);
-	// analyze_flags(argv, &map, path);
 	find_solution(&map, &path, argv);
 }

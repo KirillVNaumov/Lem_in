@@ -22,7 +22,6 @@ typedef struct      s_ant
 {
     struct s_list   *path;
     int             room_index;
-    int             waitlist;
     int             rooms_passed;
 }                   t_ant;
 
@@ -36,7 +35,6 @@ typedef struct      s_path
 {
     struct s_list   *path;
     int             length;
-    int             waitlist;
     struct s_path   *next;
 }                   t_path;
 
