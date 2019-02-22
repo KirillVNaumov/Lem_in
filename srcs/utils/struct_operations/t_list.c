@@ -41,9 +41,13 @@ t_list      *delete_list(t_list *list)
 
     new = list;
     if (!list->next)
-        return (NULL);
+		{
+			free(list);
+			return (NULL);
+		}
     while (list->next->next)
         list = list->next;
+		free(list->next);
     list->next = NULL;
     return (new);
 }
@@ -64,7 +68,7 @@ t_list      *copy_list(t_list *list)
 int         size_list(t_list *list)
 {
     int     i;
-    
+
     i = 0;
     while (list)
     {

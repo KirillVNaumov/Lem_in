@@ -1,15 +1,14 @@
 #include "lem_in.h"
 
-void        algorithm(int *index, int **graph, t_path **path, t_list *list)
+void        algorithm(int *index, int **graph, t_path **path, t_list **list)
 {
     int     i;
     int     tmp;
 
-    list = add_list(list, index[0]);
-    // print_list(list);
+    *list = add_list(*list, index[0]);
     if (index[0] == index[1])
     {
-        (*path) = add_path(*path, list);
+        (*path) = add_path(*path, *list);
         return ;
     }
     i = 0;
@@ -19,14 +18,13 @@ void        algorithm(int *index, int **graph, t_path **path, t_list *list)
         {
             graph[i][index[0]] = 0;
             graph[index[0]][i] = 0;
-            // print_graph(graph, index[2]);
             tmp = index[0];
             index[0] = i;
             algorithm(index, graph, path, list);
+						*list = delete_list(*list);
             index[0] = tmp;
             graph[i][index[0]] = 1;
             graph[index[0]][i] = 1;
-            list = delete_list(list);
         }
         ++i;
     }

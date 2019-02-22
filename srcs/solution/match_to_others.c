@@ -10,7 +10,7 @@ int         check_with_ant(t_list **path, t_map *map, int index)
     path_tmp = (*path)->next;
     prev_room = (*path);
     while (path_tmp && ant_path_tmp)
-    {    
+    {
         if (path_tmp->index == ant_path_tmp->index)
         {
             if (ant_path_tmp->index != map->end_index && ant_path_tmp->index != map->start_index)

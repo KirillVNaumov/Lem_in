@@ -10,7 +10,9 @@ void    find_all_connections_between_start_and_end(t_map *map, t_path **path)
 	index[0] = map->start_index;
 	index[1] = map->end_index;
 	index[2] = number_of_vertices(map);
-	algorithm(index, map->graph, path, list);
+	algorithm(index, map->graph, path, &list);
+	list = delete_list(list);
+	free(index);
 	*path = sort_path(*path);
 	if (!(*path))
 		error("There is no connection between start and end points");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:19:44 by knaumov           #+#    #+#             */
-/*   Updated: 2019/01/03 17:57:22 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/02/22 13:51:21 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,80 @@ void	analyze_flags(char **argv, t_map *map, t_path *path)
 	}
 }
 
+void	clean_links(t_links *links)
+{
+	if (links->next)
+		clean_links(links->next);
+	free(links->name);
+	free(links);
+}
+
+void	clean_rooms(t_rooms *rooms)
+{
+	if (rooms->next)
+		clean_rooms(rooms->next);
+	free(rooms->name);
+	clean_links(rooms->links);
+	free(rooms);
+}
+
+void	clean_list(t_list *list)
+{
+	if (list->next)
+		clean_list(list->next);
+	free(list);
+}
+
+void	clean_path(t_path *path)
+{
+	if (path->next)
+		clean_path(path->next);
+	clean_list(path->path);
+	free(path);
+}
+
+void	clean_ants(t_ant **ants)
+{
+	int	i;
+
+	i = 0;
+	while (ants[i])
+	{
+		if (ants[i]->path)
+			clean_list(ants[i]->path);
+		free(ants[i]);
+		i++;
+	}
+	free(ants);
+}
+
+void	clean_graph(int ***graph, int size)
+{
+	int	i;
+
+	i = 0;
+	while (i < size)
+	{
+		free((*graph)[i]);
+		i++;
+	}
+	free(*graph);
+}
+
+void	free_all_data(t_map *map, t_path *path)
+{
+	free(map->start);
+	free(map->end);
+	clean_graph(&map->graph, number_of_vertices(map));
+	clean_rooms(map->rooms);
+	clean_path(path);
+	clean_ants(map->ant_farm);
+}
+
 int		main(int argc, char **argv)
 {
 	t_map	map;
-	t_path	*path;	
+	t_path	*path;
 
 	path = NULL;
 	argc = 0;
@@ -64,4 +134,5 @@ int		main(int argc, char **argv)
 	find_all_connections_between_start_and_end(&map, &path);
 	create_ant_farm(&map);
 	find_solution(&map, &path, argv);
+	free_all_data(&map, path);
 }
