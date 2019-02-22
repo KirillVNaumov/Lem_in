@@ -12,16 +12,16 @@ t_list      *find_best_path(t_path *path, t_map *map, int i)
     while (path)
     {
         tmp = match_to_others(copy_list(path->path), map, i);
-        if (best_tempi > size_list(tmp) + path->waitlist)
-        {
-            best_tempi = size_list(tmp) + path->waitlist;
-            final_list = copy_list(tmp);
-            best_choice = path;
-        }
+        path->waitlist = 0;
+        if (tmp->index != -1)
+            if (best_tempi > size_list(tmp) + path->waitlist)
+            {
+                best_tempi = size_list(tmp) + path->waitlist;
+                final_list = copy_list(tmp);
+                best_choice = path;
+            }
         path = path->next;
     }
-    if (best_choice->length != 2)
-        ++best_choice->waitlist;
     return (final_list);
 }
 

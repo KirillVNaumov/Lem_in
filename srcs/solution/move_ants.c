@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-void        assign_new_values(t_map *map, int *if_only, int i)
+void        assign_new_values(t_map *map, int *if_only, int *if_printed, int i)
 {
     t_list  *tmp;
     int     counter;
@@ -22,6 +22,7 @@ void        assign_new_values(t_map *map, int *if_only, int i)
             if (*if_only == 0)
                 ft_printf(" ");
             *if_only = 0;
+            *if_printed = 1;
             ft_printf("L%d-%s", i + 1, return_name_from_index(map, map->ant_farm[i]->room_index));
         }
     }
@@ -33,15 +34,18 @@ void        move_ants(t_map *map)
 {
     int     i;
     int     if_only;
+    int     if_printed;
 
     i = 0;
     if_only = 1;
+    if_printed = 0;
     while (map->ant_farm[i])
     {
         if (map->ant_farm[i]->path != NULL && \
             map->ant_farm[i]->room_index != map->end_index)
-            assign_new_values(map, &if_only, i);
+            assign_new_values(map, &if_only, &if_printed, i);
         ++i;
     }
-    ft_printf("\n");
+    if (if_printed == 1)
+        ft_printf("\n");
 }

@@ -20,8 +20,6 @@ void         print_graph(int **graph, int size)
     int     i = 0;
     int     j = 0;
 
-    ft_printf("PRINT_GRAPH\n");
-    ft_printf("---------------------------------\n");
     ft_printf("    ");
     while (i < size)
         ft_printf("%d ", i++);
@@ -42,5 +40,5 @@ void         print_graph(int **graph, int size)
         ft_printf("%s\n", CWHITE);
         ++i;
     }
-    ft_printf("---------------------------------\n\n");
+    ft_printf("\n");
 }
