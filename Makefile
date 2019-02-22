@@ -27,7 +27,12 @@ SRCS = 	srcs/main.c \
 		srcs/utils/return_name_from_index.c \
 		srcs/utils/find_index.c \
 		srcs/utils/add_char.c \
-		srcs/utils/printing_checks.c \
+		srcs/utils/printing/print_ant_farm.c \
+		srcs/utils/printing/print_connections.c \
+		srcs/utils/printing/print_graph.c \
+		srcs/utils/printing/print_list.c \
+		srcs/utils/printing/print_path.c \
+		srcs/utils/printing/print_usage.c \
 		srcs/utils/struct_operations/t_rooms.c \
 		srcs/utils/struct_operations/t_links.c \
 		srcs/utils/struct_operations/t_list.c \

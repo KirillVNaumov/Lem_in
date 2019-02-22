@@ -14,9 +14,10 @@ int         if_solved(t_map *map)
     return (0);
 }
 
-void        find_solution(t_map *map, t_path **path)
+void        find_solution(t_map *map, t_path **path, char **argv)
 {  
     assign_paths(map, *path);
+    analyze_flags(argv, map, *path);
     while (if_solved(map))
         move_ants(map);
 }

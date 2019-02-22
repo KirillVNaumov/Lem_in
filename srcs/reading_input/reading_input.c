@@ -107,8 +107,6 @@ int         check_for_hashtag(char *line, int *start_end, int phase)
                 *start_end = 1;
             else if (!ft_strcmp(&line[2], "end"))
                 *start_end = -1;
-            else
-                error("Incorrect use of double hashtag");
             if (phase != 1)
                 error("Start/end is misplaced");
         }

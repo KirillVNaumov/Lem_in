@@ -80,6 +80,7 @@ int                 check_if_room(char *line);
 int                 check_link_existence(t_map *map, char *room, char *link);
 int                 check_room_existence(t_map *map, char *room);
 int                 check_coordinates(t_map *map, int x, int y);
+void	            analyze_flags(char **argv, t_map *map, t_path *path);
 
 //  STRUCT_OPERATIONS
 
@@ -94,7 +95,9 @@ t_path              *add_path(t_path *path, t_list *list);
 t_path              *sort_path(t_path *list);
 t_rooms             *add_room(t_rooms *rooms, char *name, int x, int y);
 
-//  UTILS
+/*
+** PRINTING
+*/
 
 void                print_connections(t_map *map);
 void                print_graph_from_map(t_map *map);
@@ -102,6 +105,10 @@ void                print_graph(int **graph, int size);
 void                print_path(t_path *path);
 void                print_list(t_list *list);
 void                print_ant_farm(t_map *map);
+void                print_usage();
+
+//  UTILS
+
 char                *add_char(char *str, char c);
 int                 find_index(t_map *map, char *name);
 char                *return_name_from_index(t_map *map, int index);
@@ -117,7 +124,7 @@ void                find_all_connections_between_start_and_end(t_map *map, t_pat
 void                algorithm(int *index, int **graph, t_path **path, t_list *list);
 
 //  SOLUTION
-void                find_solution(t_map *map, t_path **path);
+void                find_solution(t_map *map, t_path **path, char **argv);
 void                move_ants(t_map *map);
 void                assign_paths(t_map *map, t_path *path);
 t_list              *match_to_others(t_list *path, t_map *map, int i);
