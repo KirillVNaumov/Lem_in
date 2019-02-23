@@ -6,11 +6,11 @@
 #    By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/05 22:08:06 by knaumov           #+#    #+#              #
-#    Updated: 2019/02/22 14:43:40 by amelikia         ###   ########.fr        #
+#    Updated: 2019/02/22 17:21:23 by amelikia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-INCLUDES = -Iincludes -Ilibft
+INCLUDES = -I includes -I libft
 
 SRCS = 	srcs/main.c \
 		srcs/backtracking/find_all_connections_between_start_and_end.c \
@@ -19,7 +19,7 @@ SRCS = 	srcs/main.c \
 		srcs/creating_graph/creating_graph.c \
 		srcs/reading_input/reading_input.c \
 		srcs/reading_input/check_if_number.c \
-	   	srcs/reading_input/checks.c \
+	  srcs/reading_input/checks.c \
 		srcs/solution/finding_solution.c \
 		srcs/solution/assign_paths.c \
 		srcs/solution/move_ants.c \
@@ -37,7 +37,10 @@ SRCS = 	srcs/main.c \
 		srcs/utils/struct_operations/t_links.c \
 		srcs/utils/struct_operations/t_list.c \
 		srcs/utils/struct_operations/t_ant.c \
-		srcs/utils/struct_operations/t_path.c
+		srcs/utils/struct_operations/t_path.c \
+		srcs/utils/cleaners_p1.c \
+		srcs/utils/cleaners_p2.c \
+		srcs/reading_input/readers.c
 
 LIBFT = -L ./libft -lft
 
@@ -55,14 +58,14 @@ BLUE_EXTRA = \033[1;36m
 
 %.o:%.c
 			@echo "$(GREEN) - Creating $(GREEN_EXTRA)$<...$(RESET)"
-			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES) -g #-fsanitize=address -fsanitize=undefined
+			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES) -g -fsanitize=address -fsanitize=undefined
 
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
 	@make -C libft
 	@echo "$(GREEN)Compiling executable $(GREEN_EXTRA)$(EXEC)$(RESET)"
-	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT) -g #-fsanitize=address -fsanitize=undefined
+	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT) -g -fsanitize=address -fsanitize=undefined
 	@echo "$(BLUE_EXTRA)$(EXEC)$(BLUE): Complete$(RESET)"
 
 clean:

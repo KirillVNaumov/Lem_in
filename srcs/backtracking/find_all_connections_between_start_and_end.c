@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   find_all_connections_between_start_and_end.c       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/02/22 17:25:27 by amelikia          #+#    #+#             */
+/*   Updated: 2019/02/22 17:25:38 by amelikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-void    find_all_connections_between_start_and_end(t_map *map, t_path **path)
+void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 {
 	int		*index;
 	t_list	*list;
