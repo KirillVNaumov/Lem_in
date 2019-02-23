@@ -6,8 +6,8 @@ int        read_number_of_ants(t_map *map, char *line)
         map->number_of_ants = ft_atoi(line);
     else
         error("No input for number of ants");
-	if (map->number_of_ants <= 0)
-		error("Invalid number of ants");
+  if (map->number_of_ants <= 0)
+    error("Invalid number of ants");
     return (1);
 }
 
@@ -53,6 +53,7 @@ int         read_rooms(t_map *map, char *line, int *start_end)
         error("Redefinition of coordinates");
     map->rooms = add_room(map->rooms, name, x, y);
     *start_end = 0;
+    free(name);
     return (0);
 }
 
@@ -94,6 +95,8 @@ int         read_links(t_map *map, char *line, int start_end)
     if (check_link_existence(map, str1, str2) == 1)
         error("Link already exists");
     adding_link_process(map, str1, str2);
+    free(str1);
+    free(str2);
     return (0);
 }
 
@@ -126,12 +129,15 @@ void        reading_input(t_map *map)
     while (get_next_line(0, &line))
     {
         if (!ft_strcmp(line, "finish") || !ft_strcmp(line, ""))
-            break ;
+          break ;
         if (check_for_hashtag(line, &start_end, phase) == 1)
-            continue ;
+        {
+          free(line);
+          continue ;
+        }
         if (!map->number_of_ants)
             phase += read_number_of_ants(map, line);
-        else 
+        else
         {
             if (phase == 1)
                 phase += read_rooms(map, line, &start_end);
@@ -140,7 +146,10 @@ void        reading_input(t_map *map)
             if (phase == 3)
                 error("Wrong Input");
         }
+        free(line);
     }
+    if (line)
+      free(line);
     if (!map->start)
         error("Start has not been assigned");
     if (!map->end)

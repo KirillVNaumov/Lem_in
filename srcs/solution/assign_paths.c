@@ -7,18 +7,24 @@ t_list      *find_best_path(t_path *path, t_map *map, int i)
     t_list  *tmp;
     t_list  *final_list;
 
+		final_list = NULL;
     best_tempi = 2147483647;
     best_choice = NULL;
     while (path)
     {
         tmp = match_to_others(copy_list(path->path), map, i);
         if (tmp->index != -1)
-            if (best_tempi > size_list(tmp))
-            {
-                best_tempi = size_list(tmp);
-                final_list = copy_list(tmp);
-                best_choice = path;
-            }
+        {
+					if (best_tempi > size_list(tmp))
+          {
+              best_tempi = size_list(tmp);
+							if (final_list)
+								clean_list(final_list);
+              final_list = copy_list(tmp);
+              best_choice = path;
+          }
+					clean_list(tmp);
+				}
         path = path->next;
     }
     return (final_list);

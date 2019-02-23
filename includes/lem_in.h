@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:20:46 by knaumov           #+#    #+#             */
-/*   Updated: 2019/01/03 17:59:30 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/02/22 15:14:45 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,22 @@ int                 if_connected(t_map *map, int index1, int index2);
 
 //  BACKTRACKING
 void                find_all_connections_between_start_and_end(t_map *map, t_path **path);
-void                algorithm(int *index, int **graph, t_path **path, t_list *list);
+void                algorithm(int *index, int **graph, t_path **path, t_list **list);
 
 //  SOLUTION
 void                find_solution(t_map *map, t_path **path, char **argv);
 void                move_ants(t_map *map);
 void                assign_paths(t_map *map, t_path *path);
 t_list              *match_to_others(t_list *path, t_map *map, int i);
+
+// CLEANING
+
+void	clean_list(t_list *list);
+void	clean_links(t_links *links);
+void	clean_rooms(t_rooms *rooms);
+void	clean_path(t_path *path);
+void	clean_ants(t_ant **ants);
+void	clean_graph(int ***graph, int size);
+void	free_all_data(t_map *map, t_path *path);
 
 #endif
