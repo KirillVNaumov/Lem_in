@@ -6,7 +6,7 @@
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/26 16:00:19 by knaumov           #+#    #+#             */
-/*   Updated: 2018/11/26 18:06:34 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/01/14 13:09:18 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ void		ft_clean_arr(char ***argv)
 	i = 0;
 	j = 0;
 	if (!(*argv)[i])
+	{
+		if (*argv)
+			free(*argv);
 		return ;
+	}
 	while ((*argv)[i])
 		i++;
 	while (j < i)

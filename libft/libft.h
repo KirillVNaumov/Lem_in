@@ -6,7 +6,7 @@
 /*   By: knaumov <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 13:05:51 by knaumov           #+#    #+#             */
-/*   Updated: 2019/01/03 18:53:06 by knaumov          ###   ########.fr       */
+/*   Updated: 2019/01/07 13:14:45 by knaumov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,15 @@
 # include <stdlib.h>
 # include <wchar.h>
 # include "ft_printf.h"
+
+# define CLEAN "\e[1;1H\e[2J"
+# define CRED  "\x1B[31m"
+# define CBLUE  "\x1B[34m"
+# define CPINK  "\x1B[35m"
+# define CWHITE  "\x1B[39m"
+# define CBBLUE "\x1B[46m"
+# define CBYELLOW "\x1B[43m"
+# define CBBLACK "\x1B[40m"
 
 int					ft_isspace(int c);
 void				ft_memdel_arlen(void **ar);
