@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-t_list	*find_best_path(t_path *path, t_map *map, int i)
+t_list	*find_best_path(t_path *path, t_map *map)
 {
 	int		best_tempi;
 	t_list	*best_path;
@@ -10,7 +10,7 @@ t_list	*find_best_path(t_path *path, t_map *map, int i)
 	best_path = NULL;
 	while (path)
 	{
-		tmp = prepare_new_path(map, path->path, i);
+		tmp = prepare_new_path(map, path->path);
 		if (best_tempi > size_list(tmp))
 		{
 			best_tempi = size_list(tmp);
@@ -30,7 +30,7 @@ void	assign_paths(t_map *map, t_path *path)
     map->moves = NULL;
 	while (map->ant_farm[i])
 	{
-		map->ant_farm[i]->path = find_best_path(path, map, i);
+		map->ant_farm[i]->path = find_best_path(path, map);
 		++i;
 	}
 }

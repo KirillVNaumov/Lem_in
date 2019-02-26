@@ -172,7 +172,7 @@ void					algorithm(int *index, int **graph,\
 void					find_solution(t_map *map, t_path **path, char **argv);
 void					move_ants(t_map *map);
 void					assign_paths(t_map *map, t_path *path);
-t_list				    *prepare_new_path(t_map *map, t_list *path, int i);
+t_list				    *prepare_new_path(t_map *map, t_list *path);
 
 /*
 ** CLEANING
