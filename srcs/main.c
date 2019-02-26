@@ -61,6 +61,7 @@ int		main(int argc, char **argv)
 	map.start_index = find_index(&map, map.start);
 	map.end_index = find_index(&map, map.end);
 	creating_graph(&map);
+	map.length = number_of_vertices(&map);
 	find_all_connections_between_start_and_end(&map, &path);
 	create_ant_farm(&map);
 	find_solution(&map, &path, argv);
