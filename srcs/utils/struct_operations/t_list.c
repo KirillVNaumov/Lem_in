@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:26:09 by amelikia          #+#    #+#             */
-/*   Updated: 2019/02/26 14:39:46 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/02/22 16:28:23 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,12 @@ t_list		*add_list(t_list *list, int index)
 	{
 		list = (t_list *)malloc(sizeof(t_list));
 		list->index = index;
-		list->waitlist = 0;
 		list->next = NULL;
 		return (list);
 	}
 	begin = list;
 	new = (t_list *)malloc(sizeof(t_list));
 	new->index = index;
-	new->waitlist = 0;
 	new->next = NULL;
 	while (list->next)
 		list = list->next;

@@ -14,8 +14,10 @@
 
 void		print_graph_from_map(t_map *map)
 {
+	int		length;
 	t_rooms	*tmp_rooms;
 
+	length = number_of_vertices(map);
 	tmp_rooms = map->rooms;
 	while (tmp_rooms)
 	{
@@ -23,7 +25,7 @@ void		print_graph_from_map(t_map *map)
 		tmp_rooms = tmp_rooms->next;
 	}
 	ft_printf("\n");
-	print_graph(map->graph, map->length);
+	print_graph(map->graph, length);
 }
 
 void		print_graph(int **graph, int size)
