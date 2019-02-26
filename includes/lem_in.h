@@ -6,7 +6,7 @@
 /*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:20:46 by knaumov           #+#    #+#             */
-/*   Updated: 2019/02/22 17:22:35 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/02/26 14:35:57 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct			s_graph
 typedef struct			s_list
 {
 	int					index;
+	int					waitlist;
 	struct s_list		*next;
 }						t_list;
 

@@ -10,7 +10,12 @@ void		assign_new_values(t_map *map, int *if_only, int *if_printed, int i)
 	if_equal = 0;
 	tmp = map->ant_farm[i]->path;
 	while (counter++ != map->ant_farm[i]->rooms_passed)
-		tmp = tmp->next;
+	{
+		if (tmp->waitlist == 0)
+			tmp = tmp->next;
+		else
+			tmp->waitlist--;
+	}
 	if (map->ant_farm[i]->room_index == tmp->next->index)
 		if_equal = 1;
 	map->ant_farm[i]->room_index = tmp->next->index;
