@@ -6,11 +6,29 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:48:02 by amelikia          #+#    #+#             */
-/*   Updated: 2019/02/25 13:04:19 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/02/22 16:54:53 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int		if_check(t_list *path_tmp, t_list *ant_path_tmp,\
+	t_map *map, t_list **prev_room)
+{
+	if (path_tmp->index == ant_path_tmp->index)
+	{
+		if (ant_path_tmp->index != map->end_index\
+			&& ant_path_tmp->index != map->start_index)
+		{
+			if ((*prev_room)->index == path_tmp->index)
+				return (-1);
+			*prev_room = add_next_list(*prev_room,\
+				(*prev_room)->index, path_tmp);
+			return (0);
+		}
+	}
+	return (1);
+}
 
 int		check_with_ant(t_list **path, t_map *map, int index)
 {
@@ -23,16 +41,10 @@ int		check_with_ant(t_list **path, t_map *map, int index)
 	prev_room = (*path);
 	while (path_tmp && ant_path_tmp)
 	{
-		if (path_tmp->index == ant_path_tmp->index)
-			if (ant_path_tmp->index != map->end_index\
-				&& ant_path_tmp->index != map->start_index)
-			{
-				if (prev_room->index == path_tmp->index)
-					return (-1);
-				prev_room = add_next_list(prev_room,\
-					prev_room->index, path_tmp);
-				return (0);
-			}
+		if (if_check(path_tmp, ant_path_tmp, map, &prev_room) == -1)
+			return (-1);
+		else if (if_check(path_tmp, ant_path_tmp, map, &prev_room) == 0)
+			return (0);
 		prev_room = prev_room->next;
 		ant_path_tmp = ant_path_tmp->next;
 		path_tmp = path_tmp->next;

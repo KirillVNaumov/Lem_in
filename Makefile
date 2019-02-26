@@ -6,7 +6,7 @@
 #    By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/05 22:08:06 by knaumov           #+#    #+#              #
-#    Updated: 2019/02/25 11:48:49 by amelikia         ###   ########.fr        #
+#    Updated: 2019/02/22 17:21:23 by amelikia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,14 +64,14 @@ BLUE_EXTRA = \033[1;36m
 
 %.o:%.c
 			@echo "$(GREEN) - Creating $(GREEN_EXTRA)$<...$(RESET)"
-			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES) -g #-fsanitize=address -fsanitize=undefined
+			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES) -g -fsanitize=address -fsanitize=undefined
 
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
 	@make -C libft
 	@echo "$(GREEN)Compiling executable $(GREEN_EXTRA)$(EXEC)$(RESET)"
-	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT) -g #-fsanitize=address -fsanitize=undefined
+	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT) -g -fsanitize=address -fsanitize=undefined
 	@echo "$(BLUE_EXTRA)$(EXEC)$(BLUE): Complete$(RESET)"
 
 clean:
