@@ -130,6 +130,7 @@ void					print_graph(int **graph, int size);
 void					print_path(t_path *path);
 void					print_list(t_list *list);
 void					print_ant_farm(t_map *map);
+void					print_moves(t_map *map);
 void					print_usage();
 
 /*

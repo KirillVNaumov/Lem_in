@@ -28,6 +28,7 @@ SRCS = 	srcs/main.c \
 		srcs/utils/printing/print_graph.c \
 		srcs/utils/printing/print_list.c \
 		srcs/utils/printing/print_path.c \
+		srcs/utils/printing/print_moves.c \
 		srcs/utils/printing/print_usage.c \
 		srcs/utils/struct_operations/t_rooms.c \
 		srcs/utils/struct_operations/t_links.c \
@@ -65,14 +66,14 @@ BLUE_EXTRA = \033[1;36m
 
 %.o:%.c
 			@echo "$(GREEN) - Creating $(GREEN_EXTRA)$<...$(RESET)"
-			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES) #-g -fsanitize=address -fsanitize=undefined
+			@gcc -Wall -Wextra -Werror -c $< -o $@ $(INCLUDES) -g #-fsanitize=address -fsanitize=undefined
 
 all: $(EXEC)
 
 $(EXEC): $(OBJ)
 	@make -C libft
 	@echo "$(GREEN)Compiling executable $(GREEN_EXTRA)$(EXEC)$(RESET)"
-	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT) #-g -fsanitize=address -fsanitize=undefined
+	@gcc -Wall -Wextra -Werror -o $(EXEC) $(OBJ) $(INCLUDE) $(LIBFT) -g #-fsanitize=address -fsanitize=undefined
 	@echo "$(BLUE_EXTRA)$(EXEC)$(BLUE): Complete$(RESET)"
 
 clean:

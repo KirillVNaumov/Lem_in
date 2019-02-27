@@ -17,6 +17,7 @@ int		if_solved(t_map *map)
 void	find_solution(t_map *map, t_path **path, char **argv)
 {
 	assign_paths(map, *path);
+		print_moves(map);
 	analyze_flags(argv, map, *path);
 	// while (if_solved(map))
 		// move_ants(map);
