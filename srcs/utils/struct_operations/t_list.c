@@ -34,12 +34,14 @@ t_list		*add_list(t_list *list, int index)
 	{
 		list = (t_list *)malloc(sizeof(t_list));
 		list->index = index;
+		list->waitlist = 0;
 		list->next = NULL;
 		return (list);
 	}
 	begin = list;
 	new = (t_list *)malloc(sizeof(t_list));
 	new->index = index;
+	new->waitlist = 0;
 	new->next = NULL;
 	while (list->next)
 		list = list->next;

@@ -18,6 +18,12 @@
 # define CWHITE     "\x1B[39m"
 # define CBLUE      "\x1B[34m"
 
+typedef struct			s_moves
+{
+	int					*room_presence;
+	struct s_moves		*next;
+}						t_moves;
+
 typedef struct			s_ant
 {
 	struct s_list		*path;
@@ -28,6 +34,7 @@ typedef struct			s_ant
 typedef struct			s_list
 {
 	int					index;
+	int					waitlist;
 	struct s_list		*next;
 }						t_list;
 
@@ -62,7 +69,9 @@ typedef struct			s_map
 	int					start_index;
 	int					end_index;
 	int					number_of_ants;
+	int					length;
 	int					**graph;
+	t_moves				*moves;
 	t_ant				**ant_farm;
 	struct s_rooms		*rooms;
 }						t_map;
@@ -109,6 +118,7 @@ int						size_list(t_list *list);
 t_path					*add_path(t_path *path, t_list *list);
 t_path					*sort_path(t_path *list);
 t_rooms					*add_room(t_rooms *rooms, char *name, int x, int y);
+t_moves		    	    *add_moves(t_moves *graph, t_map *map);
 
 /*
 ** PRINTING
@@ -152,10 +162,20 @@ void					algorithm(int *index, int **graph,\
 ** SOLUTION
 */
 
+// void					find_solution(t_map *map, t_path **path, char **argv);
+// void					move_ants(t_map *map);
+// void					assign_paths(t_map *map, t_path *path);
+// t_list					*match_to_others(t_list *path, t_map *map, int i);
+
+/*
+** SOLUTION_OPT
+*/
+
 void					find_solution(t_map *map, t_path **path, char **argv);
 void					move_ants(t_map *map);
 void					assign_paths(t_map *map, t_path *path);
-t_list					*match_to_others(t_list *path, t_map *map, int i);
+t_list				    *prepare_new_path(t_map *map, t_list *path);
+void					update_moves(t_map *map, int i);
 
 /*
 ** CLEANING
