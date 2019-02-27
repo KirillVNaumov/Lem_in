@@ -25,7 +25,7 @@ t_list		*add_next_list(t_list *list, int index, t_list *tail)
 	return (begin);
 }
 
-t_list		*add_list(t_list *list, int index)
+t_list		*add_list(t_list *list, int index, int waitlist)
 {
 	t_list	*new;
 	t_list	*begin;
@@ -34,14 +34,14 @@ t_list		*add_list(t_list *list, int index)
 	{
 		list = (t_list *)malloc(sizeof(t_list));
 		list->index = index;
-		list->waitlist = 0;
+		list->waitlist = waitlist;
 		list->next = NULL;
 		return (list);
 	}
 	begin = list;
 	new = (t_list *)malloc(sizeof(t_list));
 	new->index = index;
-	new->waitlist = 0;
+	new->waitlist = waitlist;
 	new->next = NULL;
 	while (list->next)
 		list = list->next;
@@ -73,7 +73,7 @@ t_list		*copy_list(t_list *list)
 	new = NULL;
 	while (list)
 	{
-		new = add_list(new, list->index);
+		new = add_list(new, list->index, list->waitlist);
 		list = list->next;
 	}
 	return (new);

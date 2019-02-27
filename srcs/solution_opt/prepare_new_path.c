@@ -22,26 +22,26 @@ int		check_with_graph(t_list **path, t_map *map)
 	prev = *path;
 	curr = (*path)->next;
 	tmp_moves = map->moves;
-	ft_printf("prev_waitlist = %d\n", prev->waitlist);
 	i = 0;
 	while (prev->waitlist - i++ > 0)
 		if (tmp_moves)
 			tmp_moves = tmp_moves->next;
+	i = 0;
 	while (curr && tmp_moves)
 	{
 		if (tmp_moves->room_presence[curr->index] == 1)
 		{
 			++prev->waitlist;
-			ft_printf("Oops...\n");
 			return (-1);
 		}
-		if (curr->waitlist == 0)
+		if (curr->waitlist - i == 0)
 		{
 			curr = curr->next;
 			prev = prev->next;
+			i = 0;
 		}
 		else
-			--curr->waitlist;
+			++i;;
 		tmp_moves = tmp_moves->next;
 	}
 	return (1);
@@ -49,7 +49,6 @@ int		check_with_graph(t_list **path, t_map *map)
 
 t_list	*prepare_new_path(t_map *map, t_list *path)
 {
-	print_moves(map);
 	while (check_with_graph(&path, map) == -1)
 		;
 	return (path);

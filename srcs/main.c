@@ -40,6 +40,8 @@ void	analyze_flags(char **argv, t_map *map, t_path *path)
 			print_ant_farm(map);
 		else if (!ft_strcmp(argv[i], "--connections"))
 			print_connections(map);
+		else if (!ft_strcmp(argv[i], "--moves"))
+			print_moves(map);
 		++i;
 	}
 }
@@ -58,6 +60,7 @@ int		main(int argc, char **argv)
 	}
 	ft_bzero(&map, sizeof(t_map));
 	reading_input(&map, 0, 0);
+	ft_printf("\n");
 	map.start_index = find_index(&map, map.start);
 	map.end_index = find_index(&map, map.end);
 	creating_graph(&map);

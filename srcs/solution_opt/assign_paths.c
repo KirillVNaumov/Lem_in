@@ -31,7 +31,6 @@ void	assign_paths(t_map *map, t_path *path)
 	while (map->ant_farm[i])
 	{
 		map->ant_farm[i]->path = find_best_path(path, map);
-		print_list(map->ant_farm[i]->path);
 		update_moves(map, i);
 		++i;
 	}

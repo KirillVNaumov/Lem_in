@@ -110,7 +110,7 @@ void					analyze_flags(char **argv, t_map *map, t_path *path);
 
 void					create_ant_farm(t_map *map);
 t_links					*add_link(t_links *links, char *name, int index);
-t_list					*add_list(t_list *list, int index);
+t_list					*add_list(t_list *list, int index, int waitlist);
 t_list					*add_next_list(t_list *list, int index, t_list *tail);
 t_list					*delete_list(t_list *list);
 t_list					*copy_list(t_list *list);

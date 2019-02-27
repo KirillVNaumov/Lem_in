@@ -14,12 +14,23 @@
 
 void		print_list(t_list *list)
 {
+	t_list	*begin;
+
+	begin = list;
 	while (list)
 	{
 		ft_printf("[%d]", list->index);
 		if (list->next)
 			ft_printf("->");
 		list = list->next;
+	}
+	ft_printf("\n");
+	while (begin)
+	{
+		ft_printf(" %d ", begin->waitlist);
+		if (begin->next)
+			ft_printf("->");
+		begin = begin->next;
 	}
 	ft_printf("\n\n");
 }

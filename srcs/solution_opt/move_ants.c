@@ -8,6 +8,7 @@ void		assign_new_values(t_map *map, int i, int *if_only)
 			ft_printf(" ");
 		*if_only = 0;
 		map->ant_farm[i]->path = map->ant_farm[i]->path->next;
+		map->ant_farm[i]->room_index = map->ant_farm[i]->path->index;
 		ft_printf("L%d-%s", i + 1, return_name_from_index(map, map->ant_farm[i]->room_index));
 	}
 	else
