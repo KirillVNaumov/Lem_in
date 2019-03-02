@@ -25,7 +25,26 @@ t_list		*add_next_list(t_list *list, int index, t_list *tail)
 	return (begin);
 }
 
-t_list		*add_list(t_list *list, int index, int waitlist)
+t_list		*add_front_list(t_list *list, int index, int waitlist)
+{
+	t_list	*new;
+
+	if (!list)
+	{
+		list = (t_list *)malloc(sizeof(t_list));
+		list->index = index;
+		list->waitlist = waitlist;
+		list->next = NULL;
+		return (list);
+	}
+	new = (t_list *)malloc(sizeof(t_list));
+	new->index = index;
+	new->waitlist = waitlist;
+	new->next = list;
+	return (new);
+}
+
+t_list		*add_back_list(t_list *list, int index, int waitlist)
 {
 	t_list	*new;
 	t_list	*begin;
@@ -49,7 +68,22 @@ t_list		*add_list(t_list *list, int index, int waitlist)
 	return (begin);
 }
 
-t_list		*delete_list(t_list *list)
+t_list		*delete_front_list(t_list *list)
+{
+	t_list	*new;
+
+	new = list;
+	if (!list->next)
+	{
+		free(list);
+		return (NULL);
+	}
+	new = list->next;
+	free(list);
+	return (new);
+}
+
+t_list		*delete_back_list(t_list *list)
 {
 	t_list	*new;
 
@@ -73,7 +107,7 @@ t_list		*copy_list(t_list *list)
 	new = NULL;
 	while (list)
 	{
-		new = add_list(new, list->index, list->waitlist);
+		new = add_back_list(new, list->index, list->waitlist);
 		list = list->next;
 	}
 	return (new);
@@ -90,4 +124,17 @@ int			size_list(t_list *list)
 		list = list->next;
 	}
 	return (i);
+}
+
+t_list  *reverse_list(t_list *list)
+{
+  t_list *new_list;
+
+  new_list = NULL;
+  while (list)
+  {
+    new_list = add_front_list(new_list, list->index, list->waitlist);
+    list = list->next;
+  }
+  return (new_list);
 }

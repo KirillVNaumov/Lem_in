@@ -15,8 +15,8 @@ INCLUDES = -I includes -I libft
 SRCS = 	srcs/main.c \
 		srcs/backtracking/find_all_connections_between_start_and_end.c \
 		srcs/backtracking/algorithm.c \
-		srcs/creating_graph/if_connected.c \
 		srcs/creating_graph/creating_graph.c \
+		srcs/creating_graph/create_links_arrays.c \
 		srcs/reading_input/reading_input.c \
 		srcs/reading_input/check_if_number.c \
 		srcs/reading_input/checks.c \

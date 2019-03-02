@@ -58,6 +58,7 @@ typedef struct			s_rooms
 	int					index;
 	int					x;
 	int					y;
+	int					*links_array;
 	struct s_links		*links;
 	struct s_rooms		*next;
 }						t_rooms;
@@ -110,11 +111,14 @@ void					analyze_flags(char **argv, t_map *map, t_path *path);
 
 void					create_ant_farm(t_map *map);
 t_links					*add_link(t_links *links, char *name, int index);
-t_list					*add_list(t_list *list, int index, int waitlist);
+t_list					*add_front_list(t_list *list, int index, int waitlist);
+t_list					*add_back_list(t_list *list, int index, int waitlist);
+t_list					*delete_front_list(t_list *list);
+t_list					*delete_back_list(t_list *list);
 t_list					*add_next_list(t_list *list, int index, t_list *tail);
-t_list					*delete_list(t_list *list);
 t_list					*copy_list(t_list *list);
 int						size_list(t_list *list);
+t_list  				*reverse_list(t_list *list);
 t_path					*add_path(t_path *path, t_list *list);
 t_path					*sort_path(t_path *list);
 t_rooms					*add_room(t_rooms *rooms, char *name, int x, int y);
@@ -145,10 +149,10 @@ char					*return_name_from_index(t_map *map, int index);
 ** CREATING_GRAPH
 */
 
-int						find_connection(t_map *map);
+void					create_links_array(t_map *map);
 void					creating_graph(t_map *map);
 int						number_of_vertices(t_map *map);
-int						if_connected(t_map *map, int index1, int index2);
+int						*if_connected(t_map *map, int index);
 
 /*
 ** BACKTRACKING

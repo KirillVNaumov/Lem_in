@@ -24,6 +24,9 @@ void		move_ants(t_map *map)
 	if_only = 1;
 	while (map->ant_farm[i])
 	{
+
+		t_list* tmp;
+		tmp = map->ant_farm[i]->path;
 		if (map->ant_farm[i]->path != NULL && \
 			map->ant_farm[i]->room_index != map->end_index)
 			assign_new_values(map, i, &if_only);

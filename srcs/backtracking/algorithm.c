@@ -17,7 +17,7 @@ void	algorithm(int *index, int **graph, t_path **path, t_list **list)
 	int	i;
 	int	tmp;
 
-	*list = add_list(*list, index[0], 0);
+	*list = add_front_list(*list, index[0], 0);
 	if (index[0] == index[1])
 	{
 		(*path) = add_path(*path, *list);
@@ -33,7 +33,7 @@ void	algorithm(int *index, int **graph, t_path **path, t_list **list)
 			tmp = index[0];
 			index[0] = i;
 			algorithm(index, graph, path, list);
-			*list = delete_list(*list);
+			*list = delete_front_list(*list);
 			index[0] = tmp;
 			graph[i][index[0]] = 1;
 			graph[index[0]][i] = 1;

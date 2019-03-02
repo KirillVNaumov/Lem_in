@@ -1,8 +1,23 @@
 #include "lem_in.h"
 
+int			sum_waitlist_and_size(t_list *list)
+{
+	int		sum;
+
+	sum = 0;
+	while (list)
+	{
+		++sum;
+		sum += list->waitlist;
+		list = list->next;
+	}
+	return (sum);
+}
+
 t_list	*find_best_path(t_path *path, t_map *map)
 {
 	int		best_tempi;
+	int		size;
 	t_list	*best_path;
 	t_list	*tmp;
 
@@ -11,9 +26,10 @@ t_list	*find_best_path(t_path *path, t_map *map)
 	while (path)
 	{
 		tmp = prepare_new_path(map, path->path);
-		if (best_tempi > size_list(tmp))
+		size = sum_waitlist_and_size(tmp);
+		if (best_tempi > size)
 		{
-			best_tempi = size_list(tmp);
+			best_tempi = size;
 			best_path = tmp;
 		}
 		path = path->next;

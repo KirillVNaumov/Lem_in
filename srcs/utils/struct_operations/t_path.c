@@ -15,7 +15,6 @@
 t_path		*add_path(t_path *path, t_list *list)
 {
 	t_path	*new;
-	t_path	*begin;
 
 	if (!path)
 	{
@@ -25,15 +24,11 @@ t_path		*add_path(t_path *path, t_list *list)
 		path->next = NULL;
 		return (path);
 	}
-	begin = path;
 	new = (t_path *)malloc(sizeof(t_path));
 	new->path = copy_list(list);
 	new->length = size_list(list);
-	new->next = NULL;
-	while (path->next)
-		path = path->next;
-	path->next = new;
-	return (begin);
+	new->next = path;
+	return (new);
 }
 
 t_path		*sort_path(t_path *path)
