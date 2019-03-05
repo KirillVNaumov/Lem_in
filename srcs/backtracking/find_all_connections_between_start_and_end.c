@@ -28,7 +28,6 @@ t_list	*get_neighbors(int *arr, int i)
 
 int		visited_before(t_list *visited, int index)
 {
-	ft_printf("index in visited_before = %d\n", index);
 	while (visited)
 	{
 		if (visited->index == index)
@@ -74,26 +73,14 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 	i = 0;
 	current = map->start_index;
 	visited = add_back_list(visited, current, 0);
-	print_graph_from_map(map);
 	while (1)
 	{
-		neighbors = get_neighbors(map->graph[current], map->end_index);
-		ft_printf("Checking neighbords of %d\n", current);
+		neighbors = get_neighbors(map->graph[current], map->length);
 		while (i < size_list(neighbors)\
-		&& visited_before(visited, neighbors[i].index) == 1)
-		{
-			ft_printf("index i = %d\n", i);
-			ft_printf(" - neighbor: %d\n", neighbors[i].index);
+		&& visited_before(visited, get_index_of_i_node(neighbors, i)) == 1)
 			i++;
-		}
-		ft_printf("done!\n");
-		print_list(neighbors);
-		ft_printf("pl: %d\n",neighbors[0].index);
-		ft_printf("pl: %d\n",neighbors[1].index);
 		if (i >= size_list(neighbors))
 		{
-			ft_printf("I am done with this path !\n");
-			ft_printf("Deleting %d\n", current);
 			visited = delete_back_list(visited);
 			if (size_list(nodestack) < 1)
 				break ;
@@ -102,14 +89,10 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 			i = get_last_list(indexstack);
 			indexstack = delete_back_list(indexstack);
 		}
-		else if (neighbors[i].index == map->end_index)
+		else if (get_index_of_i_node(neighbors, i) == map->end_index)
 		{
-			ft_printf("Found end !\n");
-			ft_printf("Just adding %d\n", current);
 			nodestack = add_back_list(nodestack, current, 0);
-			ft_printf("Just adding %d\n", map->end_index);
 			nodestack = add_back_list(nodestack, map->end_index, 0);
-			print_list(nodestack);
 			*path = add_path(*path, nodestack);
 			nodestack = delete_back_list(nodestack);
 			nodestack = delete_back_list(nodestack);
@@ -117,11 +100,10 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 		}
 		else
 		{
-			ft_printf("Just adding %d\n", current);
 			nodestack = add_back_list(nodestack, current, 0);
 			indexstack = add_back_list(indexstack, i + 1, 0);
-			visited = add_back_list(visited, neighbors[i].index, 0);
-			current = neighbors[i].index;
+			visited = add_back_list(visited, get_index_of_i_node(neighbors, i), 0);
+			current = get_index_of_i_node(neighbors, i);
 			i = 0;
 		}
 	}

@@ -64,7 +64,9 @@ int		main(int argc, char **argv)
 	map.start_index = find_index(&map, map.start);
 	map.end_index = find_index(&map, map.end);
 	creating_graph(&map);
+	ft_printf("START\n");
 	find_all_connections_between_start_and_end(&map, &path);
+	ft_printf("END\n");
 	create_ant_farm(&map);
 	find_solution(&map, &path, argv);
 	// free_all_data(&map, path);
