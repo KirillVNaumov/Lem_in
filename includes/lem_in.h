@@ -6,7 +6,7 @@
 /*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:20:46 by knaumov           #+#    #+#             */
-/*   Updated: 2019/02/22 17:22:35 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/04 13:28:33 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ t_list					*delete_back_list(t_list *list);
 t_list					*add_next_list(t_list *list, int index, t_list *tail);
 t_list					*copy_list(t_list *list);
 int						size_list(t_list *list);
-t_list  				*reverse_list(t_list *list);
+t_list					*reverse_list(t_list *list);
 t_path					*add_path(t_path *path, t_list *list);
 t_path					*sort_path(t_path *list);
 t_rooms					*add_room(t_rooms *rooms, char *name, int x, int y);
-t_moves		    	    *add_moves(t_moves *graph, t_map *map);
+t_moves					*add_moves(t_moves *graph, t_map *map);
 
 /*
 ** PRINTING
@@ -160,8 +160,6 @@ int						*if_connected(t_map *map, int index);
 
 void					find_all_connections_between_start_and_end(t_map *map,\
 	t_path **path);
-void					algorithm(int *index, int **graph,\
-	t_path **path, t_list **list);
 
 /*
 ** SOLUTION

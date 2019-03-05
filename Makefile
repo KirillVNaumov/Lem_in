@@ -6,7 +6,7 @@
 #    By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/05 22:08:06 by knaumov           #+#    #+#              #
-#    Updated: 2019/02/25 13:28:26 by amelikia         ###   ########.fr        #
+#    Updated: 2019/03/04 13:28:27 by amelikia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,6 @@ INCLUDES = -I includes -I libft
 
 SRCS = 	srcs/main.c \
 		srcs/backtracking/find_all_connections_between_start_and_end.c \
-		srcs/backtracking/algorithm.c \
 		srcs/creating_graph/creating_graph.c \
 		srcs/creating_graph/create_links_arrays.c \
 		srcs/reading_input/reading_input.c \
@@ -43,12 +42,12 @@ SRCS = 	srcs/main.c \
 		srcs/solution_opt/assign_paths.c \
 		srcs/solution_opt/move_ants.c \
 		srcs/solution_opt/update_moves.c \
-		srcs/solution_opt/prepare_new_path.c 
+		srcs/solution_opt/prepare_new_path.c
 
 		#srcs/solution/finding_solution.c \
 		srcs/solution/assign_paths.c \
 		srcs/solution/move_ants.c \
-		srcs/solution/match_to_others.c 
+		srcs/solution/match_to_others.c
 
 LIBFT = -L ./libft -lft
 

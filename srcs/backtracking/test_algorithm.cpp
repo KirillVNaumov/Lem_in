@@ -41,6 +41,7 @@ bool Graph::isReachable(int s, int d)
 
     // Create a queue for BFS
     list<int> queue;
+    list<int> res;
 
     // Mark the current node as visited and enqueue it
     visited[s] = true;
@@ -54,21 +55,27 @@ bool Graph::isReachable(int s, int d)
         // Dequeue a vertex from queue and print it
         s = queue.front();
         queue.pop_front();
-
         // Get all adjacent vertices of the dequeued vertex s
         // If a adjacent has not been visited, then mark it visited
         // and enqueue it
         for (i = adj[s].begin(); i != adj[s].end(); ++i)
         {
+            // std::cout << *i << std::endl;
             // If this adjacent node is the destination node, then
             // return true
             if (*i == d)
-                return true;
-
+            {
+                res.push_back(*i);
+                for (auto v : res)
+                  std::cout << v << " ";
+                std::cout << std::endl;
+                // return true;
+            }
             // Else, continue to do BFS
             if (!visited[*i])
             {
                 visited[*i] = true;
+                res.push_back(*i);
                 queue.push_back(*i);
             }
         }
@@ -82,10 +89,11 @@ bool Graph::isReachable(int s, int d)
 int main()
 {
     // Create a graph given in the above diagram
-    Graph g(4);
+    Graph g(12);
     g.addEdge(0, 1);
-    g.addEdge(0, 2);
+    g.addEdge(1, 2);
     g.addEdge(1, 4);
+    g.addEdge(1, 3);
     g.addEdge(2, 3);
     g.addEdge(3, 4);
 
