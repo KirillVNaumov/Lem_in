@@ -1,0 +1,35 @@
+Checking neighbords of 0
+done!
+[2]->[1]
+ 0 -> 0
+
+Just adding 0
+Checking neighbords of 2
+done!
+[3]->[0]
+ 0 -> 0
+
+Found end !
+Just adding 2
+Just adding 3
+[0]->[2]->[3]
+ 0 -> 0 -> 0
+
+Checking neighbords of 2
+ - neighbor: 0
+done!
+[3]->[0]
+ 0 -> 0
+
+I am done with this path !
+Deleting 2
+Checking neighbords of 0
+ - neighbor: 0
+done!
+[2]->[1]
+ 0 -> 0
+
+I am done with this path !
+Deleting 0
+L1-2
+L1-3
