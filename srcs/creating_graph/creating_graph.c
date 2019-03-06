@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   creating_graph.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/05 14:42:14 by amelikia          #+#    #+#             */
+/*   Updated: 2019/03/05 14:42:15 by amelikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 int		number_of_vertices(t_map *map)
@@ -20,12 +32,12 @@ void	initializing_graph(t_map *map)
 	int	i;
 	int	j;
 
-	map->graph = (int **)malloc(sizeof(int *) * map->length + 1);
+	map->graph = (int **)malloc(sizeof(int *) * (map->length + 1));
 	i = 0;
 	while (i < map->length)
 	{
 		j = 0;
-		map->graph[i] = (int *)malloc(sizeof(int) * map->length + 1);
+		map->graph[i] = (int *)malloc(sizeof(int) * (map->length + 1));
 		while (j < map->length)
 			map->graph[i][j++] = 0;
 		++i;
@@ -34,9 +46,9 @@ void	initializing_graph(t_map *map)
 
 void	creating_graph(t_map *map)
 {
-	t_rooms		*tmp_rooms;
-	int	i;
-	int	j;
+	t_rooms	*tmp_rooms;
+	int		i;
+	int		j;
 
 	map->length = number_of_vertices(map);
 	initializing_graph(map);

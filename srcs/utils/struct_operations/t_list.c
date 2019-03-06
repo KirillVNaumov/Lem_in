@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:26:09 by amelikia          #+#    #+#             */
-/*   Updated: 2019/02/22 16:28:23 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/05 14:28:13 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_list		*add_next_list(t_list *list, int index, t_list *tail)
 	new->index = index;
 	new->next = tail;
 	list->next = new;
+	begin->last = new;
 	return (begin);
 }
 
@@ -55,6 +56,7 @@ t_list		*add_back_list(t_list *list, int index, int waitlist)
 		list->index = index;
 		list->waitlist = waitlist;
 		list->next = NULL;
+		list->last = NULL;
 		return (list);
 	}
 	begin = list;
@@ -62,9 +64,11 @@ t_list		*add_back_list(t_list *list, int index, int waitlist)
 	new->index = index;
 	new->waitlist = waitlist;
 	new->next = NULL;
-	while (list->next)
-		list = list->next;
+	new->last = NULL;
+	if (list->last != NULL)
+		list = list->last;
 	list->next = new;
+	begin->last = new;
 	return (begin);
 }
 
@@ -79,6 +83,7 @@ t_list		*delete_front_list(t_list *list)
 		return (NULL);
 	}
 	new = list->next;
+	new = list->last;
 	free(list);
 	return (new);
 }
@@ -97,6 +102,7 @@ t_list		*delete_back_list(t_list *list)
 		list = list->next;
 	free(list->next);
 	list->next = NULL;
+	new->last = list;
 	return (new);
 }
 
@@ -126,15 +132,15 @@ int			size_list(t_list *list)
 	return (i);
 }
 
-t_list  *reverse_list(t_list *list)
+t_list	*reverse_list(t_list *list)
 {
-  t_list *new_list;
+	t_list	*new_list;
 
-  new_list = NULL;
-  while (list)
-  {
-    new_list = add_front_list(new_list, list->index, list->waitlist);
-    list = list->next;
-  }
-  return (new_list);
+	new_list = NULL;
+	while (list)
+	{
+		new_list = add_front_list(new_list, list->index, list->waitlist);
+		list = list->next;
+	}
+	return (new_list);
 }
