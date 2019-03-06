@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:36:53 by amelikia          #+#    #+#             */
-/*   Updated: 2019/02/26 14:38:39 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 13:49:11 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int		check_with_graph(t_list **path, t_map *map)
 			i = 0;
 		}
 		else
-			++i;;
+			++i;
 		tmp_moves = tmp_moves->next;
 	}
 	return (1);

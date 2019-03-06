@@ -1,6 +1,6 @@
 #include "lem_in.h"
 
-void		update_moves(t_map *map, int i)
+void	update_moves(t_map *map, int i)
 {
 	t_list	*tmp_list;
 	t_moves	*tmp_moves;
@@ -12,10 +12,8 @@ void		update_moves(t_map *map, int i)
 	while (tmp_list->waitlist - index++ > 0)
 		if (tmp_moves)
 			tmp_moves = tmp_moves->next;
-	
 	tmp_list = tmp_list->next;
 	index = 0;
-
 	while (tmp_moves && tmp_list)
 	{
 		if (tmp_list->index != map->end_index)
@@ -23,10 +21,9 @@ void		update_moves(t_map *map, int i)
 		if (tmp_list->waitlist - index == 0)
 			tmp_list = tmp_list->next;
 		else
-			++index;;
+			++index;
 		tmp_moves = tmp_moves->next;
 	}
-
 	if (!tmp_moves && tmp_list)
 	{
 		map->moves = add_moves(map->moves, map);

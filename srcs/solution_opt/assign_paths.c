@@ -37,13 +37,12 @@ t_list	*find_best_path(t_path *path, t_map *map)
 	return (copy_list(best_path));
 }
 
-
 void	assign_paths(t_map *map, t_path *path)
 {
-	int         i;
+	int	i;
 
 	i = 0;
-    map->moves = NULL;
+	map->moves = NULL;
 	while (map->ant_farm[i])
 	{
 		map->ant_farm[i]->path = find_best_path(path, map);
@@ -51,4 +50,3 @@ void	assign_paths(t_map *map, t_path *path)
 		++i;
 	}
 }
-

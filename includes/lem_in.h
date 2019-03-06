@@ -6,7 +6,7 @@
 /*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:20:46 by knaumov           #+#    #+#             */
-/*   Updated: 2019/03/06 13:16:09 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 14:03:11 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,14 +112,11 @@ void					analyze_flags(char **argv, t_map *map, t_path *path);
 
 void					create_ant_farm(t_map *map);
 t_links					*add_link(t_links *links, char *name, int index);
-t_list					*add_front_list(t_list *list, int index, int waitlist);
 t_list					*add_back_list(t_list *list, int index, int waitlist);
-t_list					*delete_front_list(t_list *list);
 t_list					*delete_back_list(t_list *list);
 t_list					*add_next_list(t_list *list, int index, t_list *tail);
 t_list					*copy_list(t_list *list);
 int						size_list(t_list *list);
-t_list					*reverse_list(t_list *list);
 t_path					*add_path(t_path *path, t_list *list);
 t_path					*sort_path(t_path *list);
 t_rooms					*add_room(t_rooms *rooms, char *name, int x, int y);
@@ -169,7 +166,7 @@ void					find_all_connections_between_start_and_end(t_map *map,\
 void					find_solution(t_map *map, t_path **path, char **argv);
 void					move_ants(t_map *map);
 void					assign_paths(t_map *map, t_path *path);
-t_list				    *prepare_new_path(t_map *map, t_list *path);
+t_list					*prepare_new_path(t_map *map, t_list *path);
 void					update_moves(t_map *map, int i);
 
 /*

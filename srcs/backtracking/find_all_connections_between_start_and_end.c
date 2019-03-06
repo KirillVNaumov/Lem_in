@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:25:27 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/06 13:14:10 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 13:42:28 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 	visited = NULL;
 	nodestack = NULL;
 	indexstack = NULL;
+	neighbors = NULL;
 	*path = NULL;
 	i = 0;
 	current = map->start_index;
@@ -77,6 +78,8 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 	visited = add_back_list(visited, current, 0);
 	while (1)
 	{
+		if (neighbors)
+			clean_list(neighbors);
 		neighbors = get_neighbors(map->graph[current], map->length);
 		while (i < size_list(neighbors)\
 		&& visited_before(visited, get_index_of_i_node(neighbors, i)) == 1)

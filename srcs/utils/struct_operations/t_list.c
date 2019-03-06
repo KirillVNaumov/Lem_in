@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:26:09 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/06 12:43:23 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 14:02:38 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,6 @@ t_list		*add_next_list(t_list *list, int index, t_list *tail)
 	new->next = tail;
 	list->next = new;
 	return (begin);
-}
-
-t_list		*add_front_list(t_list *list, int index, int waitlist)
-{
-	t_list	*new;
-
-	if (!list)
-	{
-		list = (t_list *)malloc(sizeof(t_list));
-		list->index = index;
-		list->waitlist = waitlist;
-		list->next = NULL;
-		return (list);
-	}
-	new = (t_list *)malloc(sizeof(t_list));
-	new->index = index;
-	new->waitlist = waitlist;
-	new->next = list;
-	return (new);
 }
 
 t_list		*add_back_list(t_list *list, int index, int waitlist)
@@ -68,21 +49,6 @@ t_list		*add_back_list(t_list *list, int index, int waitlist)
 	list->next = new;
 	begin->last = new;
 	return (begin);
-}
-
-t_list		*delete_front_list(t_list *list)
-{
-	t_list	*new;
-
-	new = list;
-	if (!list->next)
-	{
-		free(list);
-		return (NULL);
-	}
-	new = list->next;
-	free(list);
-	return (new);
 }
 
 t_list		*delete_back_list(t_list *list)
@@ -127,17 +93,4 @@ int			size_list(t_list *list)
 		list = list->next;
 	}
 	return (i);
-}
-
-t_list  *reverse_list(t_list *list)
-{
-	t_list *new_list;
-
-	new_list = NULL;
-	while (list)
-	{
-		new_list = add_front_list(new_list, list->index, list->waitlist);
-		list = list->next;
-	}
-	return (new_list);
 }

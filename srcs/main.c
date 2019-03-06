@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 17:50:23 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/06 13:16:59 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 14:00:18 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int		main(int argc, char **argv)
 	map.end_index = find_index(&map, map.end);
 	creating_graph(&map);
 	find_all_connections_between_start_and_end(&map, &path);
+	if (!path)
+		error("There is no connection between start and end!");
 	create_ant_farm(&map);
 	find_solution(&map, &path, argv);
 	free_all_data(&map, path);
