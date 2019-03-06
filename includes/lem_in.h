@@ -6,7 +6,7 @@
 /*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:20:46 by knaumov           #+#    #+#             */
-/*   Updated: 2019/03/05 14:44:23 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/04 13:28:33 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ typedef struct			s_list
 	int					index;
 	int					waitlist;
 	struct s_list		*next;
-	struct s_list		*last;
-	struct s_list		*prelast;
 }						t_list;
 
 typedef struct			s_path
