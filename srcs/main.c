@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 17:50:23 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/05 15:08:41 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/04 16:56:57 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ void	analyze_flags(char **argv, t_map *map, t_path *path)
 	}
 }
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<sys/wait.h>
-#include<unistd.h>
-
 int		main(int argc, char **argv)
 {
 	t_map	map;
@@ -65,14 +60,13 @@ int		main(int argc, char **argv)
 	}
 	ft_bzero(&map, sizeof(t_map));
 	reading_input(&map, 0, 0);
+	ft_printf("\n");
 	map.start_index = find_index(&map, map.start);
 	map.end_index = find_index(&map, map.end);
 	creating_graph(&map);
 	ft_printf("START\n");
 	find_all_connections_between_start_and_end(&map, &path);
-	print_path(path);
 	ft_printf("END\n");
-	// sleep(5);
 	create_ant_farm(&map);
 	find_solution(&map, &path, argv);
 	// free_all_data(&map, path);
