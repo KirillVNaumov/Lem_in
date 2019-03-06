@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:26:09 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/06 12:34:34 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 12:36:02 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,13 +128,13 @@ int			size_list(t_list *list)
 
 t_list  *reverse_list(t_list *list)
 {
-  t_list *new_list;
+	t_list *new_list;
 
-  new_list = NULL;
-  while (list)
-  {
-    new_list = add_front_list(new_list, list->index, list->waitlist);
-    list = list->next;
-  }
-  return (new_list);
+	new_list = NULL;
+	while (list)
+	{
+		new_list = add_front_list(new_list, list->index, list->waitlist);
+		list = list->next;
+	}
+	return (new_list);
 }
