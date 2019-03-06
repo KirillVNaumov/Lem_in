@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:25:27 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/04 16:57:51 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 12:34:27 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 {
 	int		current;
 	int		i;
+	int		vertex;
 	t_list	*visited;
 	t_list	*nodestack;
 	t_list	*indexstack;
@@ -72,6 +73,7 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 	*path = NULL;
 	i = 0;
 	current = map->start_index;
+	vertex = number_of_vertices(map);
 	visited = add_back_list(visited, current, 0);
 	while (1)
 	{
@@ -82,7 +84,7 @@ void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 		if (i >= size_list(neighbors))
 		{
 			visited = delete_back_list(visited);
-			if (size_list(nodestack) < 1)
+			if (size_list(nodestack) < 1 || number_of_vertices > 1000)
 				break ;
 			current = get_last_list(nodestack);
 			nodestack = delete_back_list(nodestack);
