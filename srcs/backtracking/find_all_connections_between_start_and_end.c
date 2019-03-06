@@ -6,33 +6,37 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 17:25:27 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/04 16:57:51 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 12:31:37 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_list	*get_neighbors(int *arr, int i)
+int		*get_neighbors(int *ret, int *arr, int i)
 {
-	t_list	*ret;
+	int	j;
 
-	ret = NULL;
+	j = 0;
 	while (i >= 0)
 	{
 		if (arr[i] == 1)
-			ret = add_back_list(ret, i, 0);
+			ret[j++] = i;
 		i--;
 	}
+	ret[j] = -1;
 	return (ret);
 }
 
-int		visited_before(t_list *visited, int index)
+int		visited_before(int *visited, int index)
 {
-	while (visited)
+	int	i;
+
+	i = 0;
+	while (visited[i] != -1 && visited[i] != -2)
 	{
-		if (visited->index == index)
+		if (visited[i] == index)
 			return (1);
-		visited = visited->next;
+		++i;
 	}
 	return (0);
 }
@@ -41,69 +45,106 @@ int		get_last_list(t_list *list)
 {
 	while (list && list->next)
 		list = list->next;
+	// ft_printf("index: %d\n", list->last->index);
 	return (list->index);
 }
 
-int		get_index_of_i_node(t_list *neighbors, int i)
+int		ft_intlen(int *arr)
 {
-	int	j;
+	int	i;
 
-	j = 0;
-	while (neighbors && j < i)
+	i = 0;
+	while (1)
 	{
-		j++;
-		neighbors = neighbors->next;
+		if (arr[i] == -1 || arr[i] == -2)
+			break ;
+		++i;
 	}
-	return (neighbors->index);
+	return (i);
+}
+
+int		*create_arr(void)
+{
+	int	i;
+	int	*arr;
+
+	arr = (int*)malloc(sizeof(int) * 10001);
+	i = 0;
+	while (i < 10000)
+		arr[i++] = -2;
+	arr[i] = -1;
+	return (arr);
+}
+
+void	print_arr(int *arr)
+{
+	int	i;
+
+	i = 0;
+	while (arr[i] != -1 && arr[i] != -2)
+		ft_printf("%d -> ", arr[i++]);
+	ft_printf("\n");
 }
 
 void	find_all_connections_between_start_and_end(t_map *map, t_path **path)
 {
 	int		current;
 	int		i;
-	t_list	*visited;
-	t_list	*nodestack;
-	t_list	*indexstack;
-	t_list	*neighbors;
+	int		*neighbors;
+	int		*visited;
+	int		*nodestack;
+	int		*indexstack;
+	int		len;
+	int		vertex;
+	// t_list	*nodestack;
+	// t_list	*indexstack;
 
-	visited = NULL;
-	nodestack = NULL;
-	indexstack = NULL;
+	// nodestack = NULL;
+	// indexstack = NULL;
 	*path = NULL;
 	i = 0;
 	current = map->start_index;
-	visited = add_back_list(visited, current, 0);
+	neighbors = create_arr();
+	visited = create_arr();
+	nodestack = create_arr();
+	indexstack = create_arr();
+	visited[0] = current;
+	vertex = number_of_vertices(map);
 	while (1)
 	{
-		neighbors = get_neighbors(map->graph[current], map->length);
-		while (i < size_list(neighbors)\
-		&& visited_before(visited, get_index_of_i_node(neighbors, i)) == 1)
+		neighbors = get_neighbors(neighbors, map->graph[current], map->length);
+		while (i < ft_intlen(neighbors)\
+		&& visited_before(visited, neighbors[i]) == 1)
 			i++;
-		if (i >= size_list(neighbors))
+		if (i >= ft_intlen(neighbors))
 		{
-			visited = delete_back_list(visited);
-			if (size_list(nodestack) < 1)
+			visited[ft_intlen(visited) - 1] = -2;
+			len = ft_intlen(nodestack);
+			if (len < 1 || vertex > 1000)
 				break ;
-			current = get_last_list(nodestack);
-			nodestack = delete_back_list(nodestack);
-			i = get_last_list(indexstack);
-			indexstack = delete_back_list(indexstack);
+			current = nodestack[len - 1];
+			nodestack[len - 1] = -2;
+			len = ft_intlen(indexstack);
+			i = indexstack[len - 1];
+			indexstack[len - 1] = -2;
 		}
-		else if (get_index_of_i_node(neighbors, i) == map->end_index)
+		else if (neighbors[i] == map->end_index)
 		{
-			nodestack = add_back_list(nodestack, current, 0);
-			nodestack = add_back_list(nodestack, map->end_index, 0);
-			*path = add_path(*path, nodestack);
-			nodestack = delete_back_list(nodestack);
-			nodestack = delete_back_list(nodestack);
+			len = ft_intlen(nodestack);
+			nodestack[len] = current;
+			nodestack[len + 1] = map->end_index;
+			// *path = add_path(*path, nodestack);
+			print_arr(nodestack);
+			nodestack[len] = -2;
+			nodestack[len + 1] = -2;
 			i++;
 		}
 		else
 		{
-			nodestack = add_back_list(nodestack, current, 0);
-			indexstack = add_back_list(indexstack, i + 1, 0);
-			visited = add_back_list(visited, get_index_of_i_node(neighbors, i), 0);
-			current = get_index_of_i_node(neighbors, i);
+			nodestack[ft_intlen(nodestack)] = current;
+			indexstack[ft_intlen(indexstack)] = i + 1;
+			visited[ft_intlen(visited)] = neighbors[i];
+			current = neighbors[i];
 			i = 0;
 		}
 	}
