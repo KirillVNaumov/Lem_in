@@ -6,7 +6,7 @@
 /*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:20:46 by knaumov           #+#    #+#             */
-/*   Updated: 2019/03/06 14:03:11 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 15:20:50 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,18 @@ typedef struct			s_map
 	int					**graph;
 	t_moves				*moves;
 	t_ant				**ant_farm;
+	int					current;
+	int					i;
 	struct s_rooms		*rooms;
 }						t_map;
+
+typedef struct			s_lists
+{
+	t_list			*visited;
+	t_list			*nodestack;
+	t_list			*indexstack;
+	t_list			*neighbors;
+}						t_lists;
 
 /*
 ** MAIN
@@ -151,13 +161,18 @@ void					create_links_array(t_map *map);
 void					creating_graph(t_map *map);
 int						number_of_vertices(t_map *map);
 int						*if_connected(t_map *map, int index);
-
+void					bnull(t_lists *big_l);
+void					clear_used_data(t_lists *big_l);
 /*
 ** BACKTRACKING
 */
 
 void					find_all_connections_between_start_and_end(t_map *map,\
-	t_path **path);
+	t_path **path, int vertex);
+t_list					*get_neighbors(int *arr, int i);
+int						visited_before(t_list *visited, int index);
+int						get_last_list(t_list *list);
+int						get_i(t_list *neighbors, int i);
 
 /*
 ** SOLUTION_OPT
@@ -167,7 +182,8 @@ void					find_solution(t_map *map, t_path **path, char **argv);
 void					move_ants(t_map *map);
 void					assign_paths(t_map *map, t_path *path);
 t_list					*prepare_new_path(t_map *map, t_list *path);
-void					update_moves(t_map *map, int i);
+void					update_moves(t_map *map, int i,\
+	t_list *tmp_list, t_moves *tmp_moves);
 
 /*
 ** CLEANING

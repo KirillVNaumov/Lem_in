@@ -1,9 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   update_moves.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/06 14:11:35 by amelikia          #+#    #+#             */
+/*   Updated: 2019/03/06 14:15:38 by amelikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-void	update_moves(t_map *map, int i)
+void	update_moves(t_map *map, int i, t_list *tmp_list, t_moves *tmp_moves)
 {
-	t_list	*tmp_list;
-	t_moves	*tmp_moves;
 	int		index;
 
 	tmp_list = map->ant_farm[i]->path;
@@ -27,6 +37,6 @@ void	update_moves(t_map *map, int i)
 	if (!tmp_moves && tmp_list)
 	{
 		map->moves = add_moves(map->moves, map);
-		update_moves(map, i);
+		update_moves(map, i, NULL, NULL);
 	}
 }

@@ -6,11 +6,30 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:36:53 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/06 13:49:11 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 14:11:18 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+int		change_waitlist(t_list **prev, t_list **curr,\
+	t_moves **tmp_moves, int *i)
+{
+	if ((*tmp_moves)->room_presence[(*curr)->index] == 1)
+	{
+		++(*prev)->waitlist;
+		return (-1);
+	}
+	if ((*curr)->waitlist - (*i) == 0)
+	{
+		*curr = (*curr)->next;
+		*prev = (*prev)->next;
+		(*i) = 0;
+	}
+	else
+		++(*i);
+	return (1);
+}
 
 int		check_with_graph(t_list **path, t_map *map)
 {
@@ -29,19 +48,8 @@ int		check_with_graph(t_list **path, t_map *map)
 	i = 0;
 	while (curr && tmp_moves)
 	{
-		if (tmp_moves->room_presence[curr->index] == 1)
-		{
-			++prev->waitlist;
+		if (change_waitlist(&prev, &curr, &tmp_moves, &i) == -1)
 			return (-1);
-		}
-		if (curr->waitlist - i == 0)
-		{
-			curr = curr->next;
-			prev = prev->next;
-			i = 0;
-		}
-		else
-			++i;
 		tmp_moves = tmp_moves->next;
 	}
 	return (1);

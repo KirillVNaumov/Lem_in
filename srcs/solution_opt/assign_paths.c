@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   assign_paths.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/06 14:05:29 by amelikia          #+#    #+#             */
+/*   Updated: 2019/03/06 14:13:38 by amelikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
-int			sum_waitlist_and_size(t_list *list)
+int		sum_waitlist_and_size(t_list *list)
 {
 	int		sum;
 
@@ -46,7 +58,7 @@ void	assign_paths(t_map *map, t_path *path)
 	while (map->ant_farm[i])
 	{
 		map->ant_farm[i]->path = find_best_path(path, map);
-		update_moves(map, i);
+		update_moves(map, i, NULL, NULL);
 		++i;
 	}
 }

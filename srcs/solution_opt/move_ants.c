@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_ants.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/03/06 14:05:54 by amelikia          #+#    #+#             */
+/*   Updated: 2019/03/06 14:06:02 by amelikia         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "lem_in.h"
 
 void		assign_new_values(t_map *map, int i, int *if_only)
@@ -13,7 +25,8 @@ void		assign_new_values(t_map *map, int i, int *if_only)
 		free(map->ant_farm[i]->path);
 		map->ant_farm[i]->path = tmp;
 		map->ant_farm[i]->room_index = map->ant_farm[i]->path->index;
-		ft_printf("L%d-%s", i + 1, return_name_from_index(map, map->ant_farm[i]->room_index));
+		ft_printf("L%d-%s", i + 1, \
+		return_name_from_index(map, map->ant_farm[i]->room_index));
 	}
 	else
 		--map->ant_farm[i]->path->waitlist;

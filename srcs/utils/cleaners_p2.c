@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 16:09:57 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/06 13:46:12 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 15:20:41 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,16 @@ void	free_all_data(t_map *map, t_path *path)
 	clean_rooms(map->rooms);
 	clean_path(path);
 	clean_ants(map->ant_farm);
+}
+
+void	clear_used_data(t_lists *big_l)
+{
+	if (big_l->visited)
+		clean_list(big_l->visited);
+	if (big_l->nodestack)
+		clean_list(big_l->nodestack);
+	if (big_l->indexstack)
+		clean_list(big_l->indexstack);
+	if (big_l->neighbors)
+		clean_list(big_l->neighbors);
 }

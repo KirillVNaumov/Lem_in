@@ -6,7 +6,7 @@
 /*   By: amelikia <amelikia@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/03 17:50:23 by amelikia          #+#    #+#             */
-/*   Updated: 2019/03/06 14:00:18 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 14:57:53 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int		main(int argc, char **argv)
 {
 	t_map	map;
 	t_path	*path;
+	int		vertex;
 
 	path = NULL;
 	argc = 0;
@@ -63,7 +64,9 @@ int		main(int argc, char **argv)
 	map.start_index = find_index(&map, map.start);
 	map.end_index = find_index(&map, map.end);
 	creating_graph(&map);
-	find_all_connections_between_start_and_end(&map, &path);
+	vertex = number_of_vertices(&map);
+	map.i = 0;
+	find_all_connections_between_start_and_end(&map, &path, vertex);
 	if (!path)
 		error("There is no connection between start and end!");
 	create_ant_farm(&map);
