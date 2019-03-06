@@ -6,7 +6,7 @@
 /*   By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/03 17:20:46 by knaumov           #+#    #+#             */
-/*   Updated: 2019/03/06 12:41:28 by amelikia         ###   ########.fr       */
+/*   Updated: 2019/03/06 13:16:09 by amelikia         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,15 +161,6 @@ int						*if_connected(t_map *map, int index);
 
 void					find_all_connections_between_start_and_end(t_map *map,\
 	t_path **path);
-
-/*
-** SOLUTION
-*/
-
-// void					find_solution(t_map *map, t_path **path, char **argv);
-// void					move_ants(t_map *map);
-// void					assign_paths(t_map *map, t_path *path);
-// t_list					*match_to_others(t_list *path, t_map *map, int i);
 
 /*
 ** SOLUTION_OPT

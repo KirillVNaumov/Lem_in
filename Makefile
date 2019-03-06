@@ -6,7 +6,7 @@
 #    By: knaumov <knaumov@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/12/05 22:08:06 by knaumov           #+#    #+#              #
-#    Updated: 2019/03/04 13:28:27 by amelikia         ###   ########.fr        #
+#    Updated: 2019/03/06 13:11:27 by amelikia         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,11 +43,6 @@ SRCS = 	srcs/main.c \
 		srcs/solution_opt/move_ants.c \
 		srcs/solution_opt/update_moves.c \
 		srcs/solution_opt/prepare_new_path.c
-
-		#srcs/solution/finding_solution.c \
-		srcs/solution/assign_paths.c \
-		srcs/solution/move_ants.c \
-		srcs/solution/match_to_others.c
 
 LIBFT = -L ./libft -lft
 
